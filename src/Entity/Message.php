@@ -15,33 +15,33 @@ class Message
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"association"})
+     * @Groups({"get_message"})
      */
     private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     * @Groups({"association"})
+     * @Groups({"get_message"})
      */
     private $user;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"message"})
+     * @Groups({"get_message"})
     */
     private $userText;
 
     /**
      * @ORM\ManyToOne(targetEntity="Chanel")
      * @ORM\JoinColumn(name="channel_id", referencedColumnName="id")
-     * @Groups({"message"})
+     * @Groups({"get_message"})
      */
     private $channel;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"message"})
+     * @Groups({"get_message"})
     */
     private $date;
 

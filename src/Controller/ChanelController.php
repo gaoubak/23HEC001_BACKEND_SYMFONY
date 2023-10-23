@@ -44,7 +44,7 @@ class ChanelController extends AbstractFOSRestController
     public function listChanels()
     {
         $chanels = $this->chanelRepository->findAll();
-        $serializeChanel =  $this->serializer->normalize($chanels, null, ['groups' => ['get_follower']]);
+        $serializeChanel =  $this->serializer->normalize($chanels, null, ['groups' => ['get_chanel']]);
         return $this->createApiResponse($serializeChanel, Response::HTTP_OK);
     }
 
@@ -54,7 +54,8 @@ class ChanelController extends AbstractFOSRestController
      */
     public function getChanelAction(Chanel $chanel)
     {
-        return $this->createApiResponse($chanel, Response::HTTP_OK);
+        $serializeChanel =  $this->serializer->normalize($chanel, null, ['groups' => ['get_chanel']]);
+        return $this->createApiResponse($serializeChanel, Response::HTTP_OK);
     }
 
     /**
