@@ -46,7 +46,8 @@ class MessageController extends AbstractFOSRestController
     public function listMessages()
     {
         $messages = $this->messageRepository->findAll();
-        return $this->createApiResponse($messages, Response::HTTP_OK);
+        $serializeMessage =  $this->serializer->normalize($messages, null, ['groups' => ['get_message']]);
+        return $this->createApiResponse($serializeMessage, Response::HTTP_OK);
     }
 
     /**
@@ -55,7 +56,8 @@ class MessageController extends AbstractFOSRestController
      */
     public function getMessageAction(Message $message)
     {
-        return $this->createApiResponse($message, Response::HTTP_OK);
+        $serializeMessage =  $this->serializer->normalize($message, null, ['groups' => ['get_message']]);
+        return $this->createApiResponse($serializeMessage, Response::HTTP_OK);
     }
 
     /**
