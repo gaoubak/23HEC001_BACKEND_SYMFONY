@@ -58,7 +58,7 @@ class UserController extends AbstractFOSRestController
     public function getUserAction(User $user)
     {
         $serializedUsers = $this->serializer->normalize($user, null, ['groups' => ['get_user']]);
-        return $this->createApiResponse($user, Response::HTTP_OK);
+        return $this->createApiResponse($serializedUsers, Response::HTTP_OK);
     }
 
 

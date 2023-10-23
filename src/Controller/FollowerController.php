@@ -55,7 +55,8 @@ class FollowerController extends AbstractFOSRestController
      */
     public function getFollowerAction(Follower $follower)
     {
-        return $this->createApiResponse($follower, Response::HTTP_OK);
+        $serializeFollower = $this->serializer->normalize($follower, null, ['groups' => ['get_follower']]);
+        return $this->createApiResponse($serializeFollower, Response::HTTP_OK);
     }
 
     /**
