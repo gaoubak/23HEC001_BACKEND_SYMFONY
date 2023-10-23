@@ -1,0 +1,284 @@
+{
+	"info": {
+		"_postman_id": "858200fb-29f5-44f7-bf3d-b122cb9670af",
+		"name": "messenger",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "register",
+					"id": "7095c9b2-7076-44cb-88b2-17ebc2de47aa",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"kader@example.com\",\n    \"username\": \"faust\",\n    \"plainPassword\": \"kader2\"\n}\n\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/users/register"
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"id": "a438e503-0a81-4f19-bbe0-907e90c0c931",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"newuser@example.com\",\n    \"password\": \"password123\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/login"
+					},
+					"response": []
+				}
+			],
+			"id": "f0781cf0-e20b-4482-8f56-735321079eae"
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "get all user",
+					"id": "088ada73-1ce1-4bae-9a0c-79430cbbbd8b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": "http://127.0.0.1:8000/users"
+					},
+					"response": []
+				},
+				{
+					"name": "get one user",
+					"id": "9eca54bf-adfe-422c-bd79-8591cf6985dc",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/users/1"
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"id": "503cb819-d9a7-4d79-bb6f-3034664bd1c1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"gaoubak@gmail.com\",\n    \"username\": \"faust\",\n    \"firstName\": \"kader\",\n    \"lastName\": \"Bakayoko\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/ausers/1"
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"id": "edd2ab7f-5e24-4d65-ba25-8c9585e1be89",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://127.0.0.1:8000/users/4"
+					},
+					"response": []
+				}
+			],
+			"id": "9d1f37c3-55c8-4e2e-8ec6-364779896894"
+		},
+		{
+			"name": "Contact",
+			"item": [
+				{
+					"name": "get all contact",
+					"id": "218ddfaa-3e46-4724-8cd0-cfbbd16f05ff",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/followers"
+					},
+					"response": []
+				},
+				{
+					"name": "get one contact",
+					"id": "afeacc17-bbba-4fee-be63-d70d13235542",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/followers/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Add contact",
+					"id": "94380844-76a6-403c-b3a8-4e2eb9fa729d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": 1,\n    \"follower\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/followers/"
+					},
+					"response": []
+				},
+				{
+					"name": "delete contact",
+					"id": "327e8a4b-452f-4703-a726-c77e6bae7852",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://127.0.0.1:8000/followers"
+					},
+					"response": []
+				}
+			],
+			"id": "83a220ea-fd89-4414-9371-7d7fd17c5e70"
+		},
+		{
+			"name": "Chanel",
+			"item": [
+				{
+					"name": "get all contact",
+					"id": "f9c6eedf-8f01-41eb-8562-dfd9efa2df4b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/chanels"
+					},
+					"response": []
+				},
+				{
+					"name": "get one contact",
+					"id": "52afaa1c-37d5-487f-9d8d-61b3fd157903",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/chanels/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Add contact",
+					"id": "8764e65c-d4a0-4fb0-97dc-b454e3757028",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": 1,\n    \"contact\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/chanels"
+					},
+					"response": []
+				},
+				{
+					"name": "delete contact",
+					"id": "79610019-dded-4a4e-b71c-3b655032b1cf",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://127.0.0.1:8000/chanels"
+					},
+					"response": []
+				}
+			],
+			"id": "e660248f-4990-45fd-9aea-e606593513b7"
+		}
+	]
+}
