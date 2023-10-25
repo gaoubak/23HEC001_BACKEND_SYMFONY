@@ -279,6 +279,73 @@
 				}
 			],
 			"id": "e660248f-4990-45fd-9aea-e606593513b7"
+		},
+		{
+			"name": "Messages",
+			"item": [
+				{
+					"name": "get all contact",
+					"id": "f3a01804-da1a-40f8-be7e-f040c0c78b1a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/chanels"
+					},
+					"response": []
+				},
+				{
+					"name": "get one contact",
+					"id": "7412233b-af62-4c27-96c7-645b2d2e2512",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/chanels/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Add contact",
+					"id": "e5195f97-0ad7-4e45-bef9-78b94ab05978",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": 1,\n    \"contact\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/chanels"
+					},
+					"response": []
+				},
+				{
+					"name": "delete contact",
+					"id": "2168adce-b07e-4baf-8466-de0460da2833",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://127.0.0.1:8000/chanels"
+					},
+					"response": []
+				}
+			],
+			"id": "2b089c7d-6b47-4655-b9fb-246ff1f24478"
 		}
 	]
 }
