@@ -6,7 +6,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
-
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity()
  * @ORM\Table(name="users")
@@ -44,10 +45,21 @@ class User implements UserInterface
      */
     private $userPhoto;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Chanel", mappedBy="users")
+     * @Groups({"get_user", "get_follower", "get_association", "get_message"})
+     */
+    private $chanels;
+
     
     private $plainPassword;
 
     private $roles = [];
+
+    public function __construct()
+    {
+        $this->chanels = new ArrayCollection();
+    }
 
     public function eraseCredentials()
     {
@@ -144,6 +156,11 @@ class User implements UserInterface
     {   
         $this->password = $password;
         return $this;
+    }
+
+    public function getChanels(): Collection
+    {
+        return $this->chanels;
     }
 
 }

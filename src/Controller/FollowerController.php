@@ -71,6 +71,7 @@ class FollowerController extends AbstractFOSRestController
         if ($form->isValid()) {
             $this->followerManager->save($follower);
             $this->followerManager->flush();
+            $follower->createChanel($follower);
 
             return $this->renderCreatedResponse('Follower created successfully');
         }

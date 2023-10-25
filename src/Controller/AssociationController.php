@@ -46,7 +46,7 @@ class AssociationController extends AbstractFOSRestController
     public function listAssociations()
     {
         $associations = $this->associationRepository->findAll();
-        $serializeAssocitions =  $this->serializer->normalize($associations, null, ['groups' => ['get_chanel']]);
+        $serializeAssocitions =  $this->serializer->normalize($associations, null, ['groups' => ['get_association']]);
         return $this->createApiResponse($serializeAssocitions, Response::HTTP_OK);
     }
 
@@ -56,7 +56,7 @@ class AssociationController extends AbstractFOSRestController
      */
     public function getAssociationAction(Association $association)
     {
-        $serializeAssocitions =  $this->serializer->normalize($association, null, ['groups' => ['get_chanel']]);
+        $serializeAssocitions =  $this->serializer->normalize($association, null, ['groups' => ['get_association']]);
         return $this->createApiResponse($serializeAssocitions, Response::HTTP_OK);
     }
 
