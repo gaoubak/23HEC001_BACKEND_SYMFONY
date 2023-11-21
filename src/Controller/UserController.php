@@ -52,7 +52,7 @@ class UserController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\View(serializerGroups={"user"})
+     * @Rest\View(serializerGroups={"get_user"})
      * @Route("/{id}", name="get_user", methods={"GET"})
      */
     public function getUserAction(User $user)

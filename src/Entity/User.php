@@ -47,7 +47,7 @@ class User implements UserInterface
 
     /**
      * @ORM\ManyToMany(targetEntity="Chanel", mappedBy="users")
-     * @Groups({"get_user", "get_follower", "get_association", "get_message"})
+     * @Groups({"get_user", "get_follower", "get_association"})
      */
     private $chanels;
 
