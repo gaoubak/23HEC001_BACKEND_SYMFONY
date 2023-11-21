@@ -20,4 +20,24 @@ class MessageRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Message::class);
     }
+
+    public function findMessagesByChannelId($channelId)
+    {
+        return $this->createQueryBuilder('m')
+            ->join('m.channel', 'c')
+            ->where('c.id = :channelId')
+            ->setParameter('channelId', $channelId)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findMessagesByUserId($userId)
+    {
+        return $this->createQueryBuilder('m')
+            ->join('m.user', 'u')
+            ->where('u.id = :userId')
+            ->setParameter('userId', $userId)
+            ->getQuery()
+            ->getResult();
+    }
 }

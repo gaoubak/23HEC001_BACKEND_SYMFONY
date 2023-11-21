@@ -62,6 +62,28 @@ class MessageController extends AbstractFOSRestController
 
     /**
      * @Rest\View(serializerGroups={"message"})
+     * @Route("/chanel/{id}", name="message_get_chanel", methods={"GET"})
+     */
+    public function getMessageByChanelAction(Request $request, int $id)
+    {
+        $messages = $this->messageRepository->findMessagesByChannelId(['id' => $id]);
+        $serializeMessage =  $this->serializer->normalize($messages, null, ['groups' => ['get_message']]);
+        return $this->createApiResponse($serializeMessage, Response::HTTP_OK);
+    }
+
+    /**
+     * @Rest\View(serializerGroups={"message"})
+     * @Route("/user/{id}", name="message_get_user", methods={"GET"})
+     */
+    public function getMessageByUserAction(Request $request, int $id)
+    {
+        $messages = $this->messageRepository->findMessagesByUserId(['id' => $id]);
+        $serializeMessage =  $this->serializer->normalize($messages, null, ['groups' => ['get_message']]);
+        return $this->createApiResponse($serializeMessage, Response::HTTP_OK);
+    }
+
+    /**
+     * @Rest\View(serializerGroups={"message"})
      * @Route("/", name="message_create", methods={"POST"})
      */
     public function createMessageAction(Request $request)

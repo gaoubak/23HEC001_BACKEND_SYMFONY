@@ -17,7 +17,7 @@ class Chanel
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"get_chanel", "get_user"})
+     * @Groups({"get_chanel", "get_user", "get_message"})
      */
     private $id;
 
@@ -33,7 +33,7 @@ class Chanel
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"get_chanel", "get_user"})
+     * @Groups({"get_chanel", "get_user", "get_message"})
      */
     private $nom;
 
