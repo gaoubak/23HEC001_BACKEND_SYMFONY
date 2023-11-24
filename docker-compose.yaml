@@ -6,34 +6,50 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: symfony_docker
-    restart: on-failure
+    restart: always
     ports:
       - "9000:80"
+    working_dir: /var/www/html/public/
     volumes:
-      - /nginx.conf:/etc/nginx/http.d/default.conf
-      - /src:/var/www/html
+      - ./src:/var/www/html/public/
+    networks:
+      - symfony
+    depends_on:
+      - db
+      - mercure
+      - php
+
+  php:
+    image: php:8.2-fpm
+    container_name: php
+    restart: always
+    working_dir: /var/www/html/public/
+    volumes:
+      - ./src:/var/www/html/public/
+    networks:
+      - symfony
 
   db:
     image: mariadb:latest
-    container_name: db_container
+    container_name: db
     restart: always
     ports:
       - "3306:80"
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: app_db
-      #MYSQL_USER: myuser
-      #MYSQL_PASSWORD: mypassword
+      MYSQL_ROOT_: root
+      MYSQL_DATABASE: chat2_db
+    networks:
+      - symfony
     volumes:
       - db-data:/var/lib/mysql
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   mercure:
     image: dunglas/mercure
-    restart: unless-stopped
     container_name: mercure_docker
+    restart: unless-stopped
     environment:
-      # Uncomment the following line to disable HTTPS
       SERVER_NAME: ":80"
       MERCURE_PUBLISHER_JWT_KEY: "!ChangeMe!"
       MERCURE_SUBSCRIBER_JWT_KEY: "!ChangeMe!"
@@ -42,25 +58,30 @@ services:
       - "9090:80"
       - "443:443"
 
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - 8090:80
+    volumes:
+      - ./src:/var/www/
+      - ./src/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - alpine
+
   adminer:
     image: adminer
+    container_name: adminer
     restart: always
     ports:
-      - 1333:8080
+      - 8080:8080
+    networks:
+      - symfony
 
-  phpmyadmin:
-        image: phpmyadmin
-        container_name: phpmyadmin_simblog
-        restart: always
-        depends_on:
-            - db
-        ports:
-            - 8080:80
-        environment :
-            PMA_HOST: db
-        networks:
-            - dev
 networks:
-    dev:
+  symfony:
+    driver: bridge
+
 volumes:
   db-data:
