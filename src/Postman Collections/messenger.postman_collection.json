@@ -2,7 +2,8 @@
 	"info": {
 		"_postman_id": "858200fb-29f5-44f7-bf3d-b122cb9670af",
 		"name": "messenger",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "21725102"
 	},
 	"item": [
 		{
@@ -10,9 +11,7 @@
 			"item": [
 				{
 					"name": "register",
-					"id": "7095c9b2-7076-44cb-88b2-17ebc2de47aa",
 					"protocolProfileBehavior": {
-						"disableBodyPruning": true,
 						"disabledSystemHeaders": {
 							"accept": true
 						}
@@ -41,10 +40,6 @@
 				},
 				{
 					"name": "login",
-					"id": "a438e503-0a81-4f19-bbe0-907e90c0c931",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -61,17 +56,14 @@
 					},
 					"response": []
 				}
-			],
-			"id": "f0781cf0-e20b-4482-8f56-735321079eae"
+			]
 		},
 		{
 			"name": "User",
 			"item": [
 				{
 					"name": "get all user",
-					"id": "088ada73-1ce1-4bae-9a0c-79430cbbbd8b",
 					"protocolProfileBehavior": {
-						"disableBodyPruning": true,
 						"disabledSystemHeaders": {
 							"accept": true
 						}
@@ -97,10 +89,6 @@
 				},
 				{
 					"name": "get one user",
-					"id": "9eca54bf-adfe-422c-bd79-8591cf6985dc",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -110,10 +98,6 @@
 				},
 				{
 					"name": "update user",
-					"id": "503cb819-d9a7-4d79-bb6f-3034664bd1c1",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -132,10 +116,6 @@
 				},
 				{
 					"name": "delete user",
-					"id": "edd2ab7f-5e24-4d65-ba25-8c9585e1be89",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -143,18 +123,13 @@
 					},
 					"response": []
 				}
-			],
-			"id": "9d1f37c3-55c8-4e2e-8ec6-364779896894"
+			]
 		},
 		{
 			"name": "Contact",
 			"item": [
 				{
 					"name": "get all contact",
-					"id": "218ddfaa-3e46-4724-8cd0-cfbbd16f05ff",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -164,10 +139,6 @@
 				},
 				{
 					"name": "get one contact",
-					"id": "afeacc17-bbba-4fee-be63-d70d13235542",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -177,10 +148,6 @@
 				},
 				{
 					"name": "Add contact",
-					"id": "94380844-76a6-403c-b3a8-4e2eb9fa729d",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -199,10 +166,6 @@
 				},
 				{
 					"name": "delete contact",
-					"id": "327e8a4b-452f-4703-a726-c77e6bae7852",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -210,18 +173,13 @@
 					},
 					"response": []
 				}
-			],
-			"id": "83a220ea-fd89-4414-9371-7d7fd17c5e70"
+			]
 		},
 		{
 			"name": "Chanel",
 			"item": [
 				{
-					"name": "get all contact",
-					"id": "f9c6eedf-8f01-41eb-8562-dfd9efa2df4b",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"name": "get all chanels",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -230,24 +188,7 @@
 					"response": []
 				},
 				{
-					"name": "get all contact Copy",
-					"id": "3792224c-5566-4c3c-ab00-faa80046ca2e",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://127.0.0.1:8000/chanels"
-					},
-					"response": []
-				},
-				{
-					"name": "get one contact",
-					"id": "52afaa1c-37d5-487f-9d8d-61b3fd157903",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"name": "get one chanels",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -256,11 +197,7 @@
 					"response": []
 				},
 				{
-					"name": "Add contact",
-					"id": "8764e65c-d4a0-4fb0-97dc-b454e3757028",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"name": "Add chanels",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -278,11 +215,7 @@
 					"response": []
 				},
 				{
-					"name": "delete contact",
-					"id": "79610019-dded-4a4e-b71c-3b655032b1cf",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"name": "delete chanels",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -290,57 +223,49 @@
 					},
 					"response": []
 				}
-			],
-			"id": "e660248f-4990-45fd-9aea-e606593513b7"
+			]
 		},
 		{
 			"name": "Messages",
 			"item": [
 				{
-					"name": "get all contact",
-					"id": "f3a01804-da1a-40f8-be7e-f040c0c78b1a",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"name": "get all messages",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://127.0.0.1:8000/chanels"
+						"url": "http://127.0.0.1:8000/messages"
 					},
 					"response": []
 				},
 				{
-					"name": "get all contact Copy",
-					"id": "42aec6be-09b2-4d03-9c78-259d13f19fa7",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"name": "get all messages from a chanel",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://127.0.0.1:8000/chanels"
+						"url": "http://127.0.0.1:8000/messages/chanel/1"
 					},
 					"response": []
 				},
 				{
-					"name": "get one contact",
-					"id": "7412233b-af62-4c27-96c7-645b2d2e2512",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"name": "get one messages from one user",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://127.0.0.1:8000/chanels/1"
+						"url": "http://127.0.0.1:8000/messages/user/5"
 					},
 					"response": []
 				},
 				{
-					"name": "Add contact",
-					"id": "e5195f97-0ad7-4e45-bef9-78b94ab05978",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
+					"name": "get one messages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/messages/1"
 					},
+					"response": []
+				},
+				{
+					"name": "Add messages",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -353,25 +278,20 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8000/chanels"
+						"url": "http://127.0.0.1:8000/messages"
 					},
 					"response": []
 				},
 				{
-					"name": "delete contact",
-					"id": "2168adce-b07e-4baf-8466-de0460da2833",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"name": "delete messages",
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://127.0.0.1:8000/chanels"
+						"url": "http://127.0.0.1:8000/messages"
 					},
 					"response": []
 				}
-			],
-			"id": "2b089c7d-6b47-4655-b9fb-246ff1f24478"
+			]
 		}
 	]
 }

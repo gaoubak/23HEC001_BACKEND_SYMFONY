@@ -34,11 +34,10 @@ RUN docker-php-ext-install pdo pdo_mysql opcache intl zip calendar dom mbstring 
 # Install APCu extension
 RUN pecl install apcu && docker-php-ext-enable apcu
 
-# Create the directory for the Symfony application
-RUN mkdir -p /var/www/html/public
-
 # Start Nginx and PHP-FPM
 CMD nginx && php-fpm
 
+EXPOSE 9000
+
 # Set the working directory
-WORKDIR /var/www/html/public
+WORKDIR /var/www/html/

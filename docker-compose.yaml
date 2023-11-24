@@ -5,36 +5,37 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: symfony_docker
+    container_name: symfony_alpine
     restart: always
-    ports:
-      - "9000:80"
-    working_dir: /var/www/html/public/
+    working_dir: /var/www/html/
     volumes:
-      - ./src:/var/www/html/public/
+      - ./src:/var/www/html/
     networks:
       - symfony
     depends_on:
       - db
       - mercure
-      - php
 
-  php:
-    image: php:8.2-fpm
-    container_name: php
-    restart: always
-    working_dir: /var/www/html/public/
+  nginx:
+    image: nginx:alpine  # Use the Alpine variant of the Nginx image
+    container_name: symfony_nginx
+    restart: unless-stopped
+    ports:
+      - 8090:80
     volumes:
-      - ./src:/var/www/html/public/
+      - ./src:/var/www/html/
+      - ./src/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - alpine
     networks:
       - symfony
 
   db:
     image: mariadb:latest
-    container_name: db
+    container_name: symfony_db
     restart: always
     ports:
-      - "3306:80"
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_ROOT_: root
@@ -47,7 +48,7 @@ services:
 
   mercure:
     image: dunglas/mercure
-    container_name: mercure_docker
+    container_name: symfony_mercure
     restart: unless-stopped
     environment:
       SERVER_NAME: ":80"
@@ -58,21 +59,9 @@ services:
       - "9090:80"
       - "443:443"
 
-  nginx:
-    image: nginx:latest
-    container_name: nginx
-    restart: unless-stopped
-    ports:
-      - 8090:80
-    volumes:
-      - ./src:/var/www/
-      - ./src/nginx/conf.d:/etc/nginx/conf.d
-    depends_on:
-      - alpine
-
   adminer:
     image: adminer
-    container_name: adminer
+    container_name: symfony_adminer
     restart: always
     ports:
       - 8080:8080
