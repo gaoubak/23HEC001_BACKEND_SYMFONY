@@ -1,0 +1,76 @@
+version: "3.8"
+
+services:
+  alpine:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: symfony_alpine
+    restart: always
+    working_dir: /var/www/html/
+    volumes:
+      - ./src:/var/www/html/
+    networks:
+      - symfony
+    depends_on:
+      - db
+      - mercure
+
+  nginx:
+    image: nginx:alpine  # Use the Alpine variant of the Nginx image
+    container_name: symfony_nginx
+    restart: unless-stopped
+    ports:
+      - 8090:80
+    volumes:
+      - ./src:/var/www/html/
+      - ./src/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - alpine
+    networks:
+      - symfony
+
+  db:
+    image: mariadb:latest
+    container_name: symfony_db
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_: root
+      MYSQL_DATABASE: chat2_db
+    networks:
+      - symfony
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  mercure:
+    image: dunglas/mercure
+    container_name: symfony_mercure
+    restart: unless-stopped
+    environment:
+      SERVER_NAME: ":80"
+      MERCURE_PUBLISHER_JWT_KEY: "!ChangeMe!"
+      MERCURE_SUBSCRIBER_JWT_KEY: "!ChangeMe!"
+      MERCURE_EXTRA_DIRECTIVES: cors_origins "http://localhost:3000"
+    ports:
+      - "9090:80"
+      - "443:443"
+
+  adminer:
+    image: adminer
+    container_name: symfony_adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - symfony
+
+networks:
+  symfony:
+    driver: bridge
+
+volumes:
+  db-data:
