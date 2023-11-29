@@ -23,7 +23,7 @@ Run the docker-compose
 ```
 
 
-If you dont have the folder jwt 
+If you dont have the folder jwt in /src/ tap : 
 ```bash
 php bin/console lexik:jwt:generate-keypair
 ```
@@ -33,7 +33,7 @@ Log into the PHP container
   docker exec -it  nom-du-container bash
 ```
 
-If you need a database, create a file .env.local and add a line like this example:
+If you need a database, create a file .env.local and add a line like this example in /src:
 
 ```yaml
  DATABASE_URL="mysql://app:!ChangeMe!@127.0.0.1:3306/app?serverVersion=8&charset=utf8mb4"
