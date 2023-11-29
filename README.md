@@ -1,11 +1,11 @@
 # 23HEC001_BACKEND_SYMFONY
 
 
-# Symfony 6 + PHP 8.2 with Docker
+## Symfony 6 + PHP 8.2 with Docker
 
 **ONLY for DEV, not for production**
 
-## Run Locally
+### Run Locally
 
 Clone the project
 
