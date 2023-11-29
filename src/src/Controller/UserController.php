@@ -19,7 +19,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 
 /**
- * @Route("/users")
+ * @Route("/api/users")
  */
 class UserController extends AbstractFOSRestController
 {

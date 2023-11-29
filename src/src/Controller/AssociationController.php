@@ -19,7 +19,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 
 /**
- * @Route("/associations")
+ * @Route("/api/associations")
  */
 class AssociationController extends AbstractFOSRestController
 {

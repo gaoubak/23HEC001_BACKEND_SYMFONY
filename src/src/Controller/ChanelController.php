@@ -17,7 +17,7 @@ use App\Repository\ChanelRepository;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
- * @Route("/chanels")
+ * @Route("/api/chanels")
  */
 class ChanelController extends AbstractFOSRestController
 {

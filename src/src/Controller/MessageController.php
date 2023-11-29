@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Message;
-use App\Form\MessageType; // Import the custom form
+use App\Form\MessageType;
 use App\Manager\MessageManager;
 use App\Traits\ApiResponseTrait;
 use App\Traits\FormHandlerTrait;
@@ -18,7 +18,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 
 /**
- * @Route("/messages")
+ * @Route("/api/messages")
  */
 class MessageController extends AbstractFOSRestController
 {

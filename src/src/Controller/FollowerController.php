@@ -17,7 +17,7 @@ use App\Repository\FollowerRepository;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
- * @Route("/followers")
+ * @Route("/api/followers")
  */
 class FollowerController extends AbstractFOSRestController
 {
