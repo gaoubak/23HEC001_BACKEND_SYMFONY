@@ -22,7 +22,7 @@ Run the docker-compose
  docker-compose up -d
 ```
 
-```bash
+
 If you dont have the folder jwt 
 ```bash
 php bin/console lexik:jwt:generate-keypair
