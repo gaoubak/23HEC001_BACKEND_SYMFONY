@@ -49,6 +49,9 @@ This docker-compose provides you :
     - pdo pdo_mysql pdo_pgsql opcache intl zip calendar dom mbstring gd xsl
     - nodejs, npm, yarn
 - mercure
+- adminer
+- db
+- nginx
 
 
 ## Requirements
