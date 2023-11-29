@@ -17,9 +17,16 @@ Run the docker-compose
 
 ```bash
   docker compose build --no-cache --pull
-  docker-compose up -d
+```
+```bash
+ docker-compose up -d
 ```
 
+```bash
+If you dont have the folder jwt 
+```bash
+php bin/console lexik:jwt:generate-keypair
+```
 Log into the PHP container
 
 ```bash
