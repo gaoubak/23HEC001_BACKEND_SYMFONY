@@ -12,7 +12,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    #[Route(path: '/login', name: 'api_login', methods: ['POST'])]
+    #[Route(path: '/api/login', name: 'api_login', methods: ['POST'])]
     public function login(Request $request, Security $security, AuthenticationUtils $authenticationUtils): JsonResponse
     {
         // Check if the user is already authenticated
