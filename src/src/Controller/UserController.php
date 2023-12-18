@@ -41,6 +41,20 @@ class UserController extends AbstractFOSRestController
 
     /**
      * @Rest\View(serializerGroups={"get_user"})
+     * @Route("/current", name="get_current_user", methods={"GET"})
+     */
+    public function getCurrentUserAction()
+    {
+        // Get the current user from the security context
+        $user = $this->getUser();
+
+        $serializedUser = $this->serializer->normalize($user, null, ['groups' => ['get_user']]);
+        return $this->createApiResponse($serializedUser, Response::HTTP_OK);
+    }
+
+
+    /**
+     * @Rest\View(serializerGroups={"get_user"})
      * @Route("/", name="list_user", methods={"GET"})
      */
     public function listUsers()
