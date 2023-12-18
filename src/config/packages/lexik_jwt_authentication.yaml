@@ -5,10 +5,4 @@ lexik_jwt_authentication:
     token_ttl: 3600 # in seconds, default is 3600
     user_identity_field: email
     
-    token_extractors:
-        cookie:
-            enabled: true
-            name: BEARER
-    # ...
-    set_cookies:
-        BEARER: ~
+    
