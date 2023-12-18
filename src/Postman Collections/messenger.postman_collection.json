@@ -34,7 +34,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8000/api/users/register"
+						"url": "http://127.0.0.1:8090/api/users/register"
 					},
 					"response": []
 				},
@@ -52,7 +52,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8000/api/login"
+						"url": "http://127.0.0.1:8090/api/login_check"
 					},
 					"response": []
 				}
@@ -83,7 +83,7 @@
 								"disabled": true
 							}
 						],
-						"url": "http://127.0.0.1:8000/api/users"
+						"url": "http://127.0.0.1:8090/api/users"
 					},
 					"response": []
 				},
@@ -92,7 +92,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://127.0.0.1:8000/api/users/1"
+						"url": "http://127.0.0.1:8090/api/users/1"
 					},
 					"response": []
 				},
@@ -110,7 +110,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8000/api/ausers/1"
+						"url": "http://127.0.0.1:8090/api/ausers/1"
 					},
 					"response": []
 				},
@@ -119,7 +119,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://127.0.0.1:8000/api/users/4"
+						"url": "http://127.0.0.1:8090/api/users/4"
 					},
 					"response": []
 				}
@@ -133,7 +133,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://127.0.0.1:8000/api/followers"
+						"url": "http://127.0.0.1:8090/api/followers"
 					},
 					"response": []
 				},
@@ -142,7 +142,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://127.0.0.1:8000/api/followers/1"
+						"url": "http://127.0.0.1:8090/api/followers/1"
 					},
 					"response": []
 				},
@@ -160,7 +160,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8000/api/followers/"
+						"url": "http://127.0.0.1:8090/api/followers/"
 					},
 					"response": []
 				},
@@ -169,7 +169,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://127.0.0.1:8000/api/followers"
+						"url": "http://127.0.0.1:8090/api/followers"
 					},
 					"response": []
 				}
@@ -183,7 +183,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://127.0.0.1:8000/api/chanels"
+						"url": "http://127.0.0.1:8090/api/chanels"
 					},
 					"response": []
 				},
@@ -192,7 +192,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://127.0.0.1:8000/api/chanels/1"
+						"url": "http://127.0.0.1:8090/api/chanels/1"
 					},
 					"response": []
 				},
@@ -210,7 +210,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8000/api/chanels"
+						"url": "http://127.0.0.1:8090/api/chanels"
 					},
 					"response": []
 				},
@@ -219,7 +219,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://127.0.0.1:8000/api/chanels"
+						"url": "http://127.0.0.1:8090/api/chanels"
 					},
 					"response": []
 				}
@@ -233,7 +233,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://127.0.0.1:8000/api/messages"
+						"url": "http://127.0.0.1:8090/api/messages"
 					},
 					"response": []
 				},
@@ -242,7 +242,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://127.0.0.1:8000/api/messages/chanel/1"
+						"url": "http://127.0.0.1:8090/api/messages/chanel/1"
 					},
 					"response": []
 				},
@@ -251,7 +251,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://127.0.0.1:8000/api/messages/user/5"
+						"url": "http://127.0.0.1:8090/api/messages/user/5"
 					},
 					"response": []
 				},
@@ -260,7 +260,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://127.0.0.1:8000/api/messages/1"
+						"url": "http://127.0.0.1:8090/api/messages/1"
 					},
 					"response": []
 				},
@@ -278,7 +278,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8000/api/messages"
+						"url": "http://127.0.0.1:8090/api/messages"
 					},
 					"response": []
 				},
@@ -287,7 +287,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://127.0.0.1:8000/api/messages"
+						"url": "http://127.0.0.1:8090/api/messages"
 					},
 					"response": []
 				}
