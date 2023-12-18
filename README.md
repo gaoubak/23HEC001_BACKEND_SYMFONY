@@ -25,7 +25,8 @@ Run the docker-compose
 
 If you dont have the folder jwt in /src/ tap : 
 ```bash
-php bin/console lexik:jwt:generate-keypair
+docker-compose exec alpine composer install
+docker-compose exec alpine bin/console lexik:jwt:generate-keypair
 ```
 Log into the PHP container
 
