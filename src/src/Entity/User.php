@@ -53,6 +53,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $chanels;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Association", mappedBy="user")
+     */
+    private $associations;
     
     private $plainPassword;
 
@@ -157,6 +161,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPassword(?string $password): self
     {   
         $this->password = $password;
+        return $this;
+    }
+
+    public function addChanel(Chanel $chanel): self
+    {
+        if (!$this->chanels->contains($chanel)) {
+            $this->chanels[] = $chanel;
+            $chanel->addUser($this); 
+        }
+
         return $this;
     }
 

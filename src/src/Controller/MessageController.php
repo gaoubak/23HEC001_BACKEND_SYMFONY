@@ -84,12 +84,12 @@ class MessageController extends AbstractFOSRestController
 
     /**
      * @Rest\View(serializerGroups={"message"})
-     * @Route("/", name="message_create", methods={"POST"})
+     * @Route("/send", name="message_create", methods={"POST"})
      */
     public function createMessageAction(Request $request)
     {
         $message = new Message();
-        $form = $this->formFactory->create(MessageType::class, $message); // Use the custom form
+        $form = $this->formFactory->create(MessageType::class, $message); 
         $this->handleForm($request, $form);
 
         if ($form->isValid()) {

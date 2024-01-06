@@ -50,6 +50,19 @@ class ChanelController extends AbstractFOSRestController
 
     /**
      * @Rest\View(serializerGroups={"chanel"})
+     * @Route("/user", name="user_chanels", methods={"GET"})
+     */
+    public function listUserChanels()
+    {
+        $currentUser = $this->getUser();
+
+        $userChanels = $this->chanelRepository->findByUser($currentUser);
+        $serializeChanel = $this->serializer->normalize($userChanels, null, ['groups' => ['get_chanel']]);
+        return $this->createApiResponse($serializeChanel, Response::HTTP_OK);
+    }
+
+    /**
+     * @Rest\View(serializerGroups={"chanel"})
      * @Route("/{id}", name="chanel_get", methods={"GET"})
      */
     public function getChanelAction(Chanel $chanel)
@@ -60,7 +73,7 @@ class ChanelController extends AbstractFOSRestController
 
     /**
      * @Rest\View(serializerGroups={"chanel"})
-     * @Route("/", name="chanel_create", methods={"POST"})
+     * @Route("/create", name="chanel_create", methods={"POST"})
      */
     public function createChanelAction(Request $request)
     {

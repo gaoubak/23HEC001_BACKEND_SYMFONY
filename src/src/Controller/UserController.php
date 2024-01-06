@@ -45,7 +45,6 @@ class UserController extends AbstractFOSRestController
      */
     public function getCurrentUserAction()
     {
-        // Get the current user from the security context
         $user = $this->getUser();
 
         $serializedUser = $this->serializer->normalize($user, null, ['groups' => ['get_user']]);

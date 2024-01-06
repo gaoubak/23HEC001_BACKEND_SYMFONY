@@ -3,7 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Follower;
-use App\Form\FollowerType; 
+use App\Form\FollowerType;
+use App\Service\FollowerService; 
 use App\Manager\FollowerManager;
 use App\Traits\ApiResponseTrait;
 use App\Traits\FormHandlerTrait;
@@ -28,13 +29,15 @@ class FollowerController extends AbstractFOSRestController
     private $formFactory;
     private $followerRepository;
     private $serializer;
+    private $followerService;
 
-    public function __construct(FollowerManager $followerManager, FormFactoryInterface $formFactory, FollowerRepository $followerRepository, SerializerInterface $serializer)
+    public function __construct(FollowerManager $followerManager, FormFactoryInterface $formFactory, FollowerRepository $followerRepository, SerializerInterface $serializer, FollowerService $followerService)
     {
         $this->followerManager = $followerManager;
         $this->formFactory = $formFactory;
         $this->followerRepository = $followerRepository;
         $this->serializer = $serializer;
+        $this->followerService = $followerService;
     }
 
 
@@ -60,7 +63,7 @@ class FollowerController extends AbstractFOSRestController
     }
 
     /**
-     * @Route("/", name="follower_create", methods={"POST"})
+     * @Route("/create", name="follower_create", methods={"POST"})
      */
     public function createFollowerAction(Request $request)
     {
@@ -69,9 +72,7 @@ class FollowerController extends AbstractFOSRestController
         $this->handleForm($request, $form);
 
         if ($form->isValid()) {
-            $this->followerManager->save($follower);
-            $this->followerManager->flush();
-            $follower->createChanel($follower);
+            $this->followerService->createFollowerWithChanel($follower);
 
             return $this->renderCreatedResponse('Follower created successfully');
         }
