@@ -20,19 +20,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel"})
+     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel"})
+     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel"})
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel"})
+     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel"})
      */
     private $email;
 
@@ -43,7 +43,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel"})
+     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel"})
      */
     private $userPhoto;
 

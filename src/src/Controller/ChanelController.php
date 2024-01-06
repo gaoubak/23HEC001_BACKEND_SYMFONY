@@ -57,7 +57,7 @@ class ChanelController extends AbstractFOSRestController
         $currentUser = $this->getUser();
 
         $userChanels = $this->chanelRepository->findByUser($currentUser);
-        $serializeChanel = $this->serializer->normalize($userChanels, null, ['groups' => ['get_chanel']]);
+        $serializeChanel = $this->serializer->normalize($userChanels, null, ['groups' => ['get_my_chanel']]);
         return $this->createApiResponse($serializeChanel, Response::HTTP_OK);
     }
 
