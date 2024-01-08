@@ -39,7 +39,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_ROOT_: root
-      MYSQL_DATABASE: chat2_db
+      MYSQL_DATABASE: chat22_db
     networks:
       - symfony
     volumes:
@@ -59,15 +59,21 @@ services:
       - "9090:80"
       - "443:443"
 
-  adminer:
-    image: adminer
-    container_name: symfony_adminer
+  phpmyadmin: 
+    image: phpmyadmin/phpmyadmin
+    container_name: symfony_phpmyadmin
     restart: always
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root
     ports:
-      - 8080:8080
+      - 8181:80  
+    depends_on:
+      - db
     networks:
       - symfony
-
+      
 networks:
   symfony:
     driver: bridge

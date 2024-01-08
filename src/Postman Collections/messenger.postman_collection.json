@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "858200fb-29f5-44f7-bf3d-b122cb9670af",
+		"_postman_id": "d5e10556-9dfd-4f30-98db-241a7d812fa2",
 		"name": "messenger",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "21725102"
@@ -45,7 +45,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"newuser@example.com\",\n    \"password\": \"password123\"\n}\n",
+							"raw": "{\n    \"username\": \"kader@example.com\",\n    \"password\": \"kader2\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -69,6 +69,12 @@
 						}
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ3MDkwNzYsImV4cCI6MTcwNDcxMjY3Niwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.DdRHdwvgJxXuUnMfvtKHtDDYMS56vuHyyaNlHKh5xn2FdXkQEq55mxiOKdqzxoS_vnyut2ZWfKpVZA2H6Jwo9YkOMhwL-Xg3FC9MCdLVoCu9i0m5FqDSREhsHsZyTN89aY7HBtklPDEgnaqSNULHbozT7oCIEZjTj6fHfUjjluR-zpIREJhTAHxWpfRLT4EzTY1mu6HsC5nZQAuKwsm7jniO9ibs5wUxQ9bECU4BW3OWR2jEyhdsWFO65kFjqgwbORXoCQU9dXTpSBGyERVCY5S6Q7dQYdACmINBp3gaBiEDJ9nXJwnvrCWWokW9tkVFja1GzqqSoNk2uzYVEGMUwA"
+							}
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -84,6 +90,38 @@
 							}
 						],
 						"url": "http://127.0.0.1:8090/api/users"
+					},
+					"response": []
+				},
+				{
+					"name": "get current user",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ3MDcwNDQsImV4cCI6MTcwNDcxMDY0NCwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.TBIRoVHpoxyjnikuWlRbg47SZkFHyQC7uM6HeYo_QFwe5B6KD9ek9bxrcVC6sj151tjvtzzMOQx3PIyXb5mjKqHuFzCIsoyMPuqrSszrt4_3x24pC7mgccJGHfKFCsSjO19ql2-BPQZdRHpKYbpQhnRDCikqAO8wrGzb-1R9oSxxVzp3Sji1Dqz4CD75wicflk2pEooWt_AQ-XV4egNnBVke6LyFy9mCW8J_X5XJrKhtiaqNOp9oPPp8f8m1rN1eFcOq4fpKXwkRKXgf6Sss8NM7N0DJ1YSJJaOBSifQFDgnRdlohm70fZ3rLe6luLdF6PQikmYwgEJWq60HsiOqgg"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": "http://127.0.0.1:8090/api/users/current"
 					},
 					"response": []
 				},
@@ -119,7 +157,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://127.0.0.1:8090/api/users/4"
+						"url": "http://127.0.0.1:8090/api/users/delete/1"
 					},
 					"response": []
 				}
@@ -131,6 +169,12 @@
 				{
 					"name": "get all contact",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ0OTMzMjYsImV4cCI6MTcwNDQ5NjkyNiwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.ABjif9TQ32u3jf3cz7ptuS4-yqBKUvh3HWT7h2PL99d0_X52MbFAXEaB81oBtmwnVpLvC3JvaIPhknwiGO6hrpyLQYna7I0kBiLPRxmrQKAGYtCYMrfsrRoW5WoL7502oPAEibJroJaVT8dD7iFqwD0l2mKDP3prChFAdILCzVTUGvYCnGbY5mRt7D0m1vP2Z1RM4om7yKhfUy8mIZjy-Bb4IVn3T99rSAmV00YU0voW3Upnzj2tVNk2_JS2eLXQj4hnlfB6HyfhC4BlsNzne0ZNrdL-3_GgJULKCVdgnqLZ0958vOCT_d0oYQMu4KP92tio32MSBt2QOcoKUleD8g"
+							}
+						},
 						"method": "GET",
 						"header": [],
 						"url": "http://127.0.0.1:8090/api/followers"
@@ -140,6 +184,12 @@
 				{
 					"name": "get one contact",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ3MTA3MTQsImV4cCI6MTcwNDcxNDMxNCwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.iawc7aUSEaE_9QZwFSCoszCtKbYADY4USVYieTCBU3XlA2AC73MvOsjERnOlnOC4KNhrFmt4QA1alrPdqqFwZ32rR7JHw1rxufgTT76NJzu5KD4KomUB603LuxZVTHohB_V7XHXry-1Byw0rTxPTfsoPrN3a0jkzXm5hpLcFuDhP54NEtZppF0MiwF_nMDA6Uo2_DsS18LwGOku4y9QxCTdz0XzGTDFyNJBgUGda98WfpUCdJCF9Tmn0EOsp1C2Q1lt3IeFkcFOuusG0xaTxiVNFOfOizdVGsnpX6Aj0UAF5my9xWEhZ6qRMTLRjBEIfWkaoXv_3xhksd3eRsRXvNA"
+							}
+						},
 						"method": "GET",
 						"header": [],
 						"url": "http://127.0.0.1:8090/api/followers/1"
@@ -149,18 +199,24 @@
 				{
 					"name": "Add contact",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ3MDcwNDQsImV4cCI6MTcwNDcxMDY0NCwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.TBIRoVHpoxyjnikuWlRbg47SZkFHyQC7uM6HeYo_QFwe5B6KD9ek9bxrcVC6sj151tjvtzzMOQx3PIyXb5mjKqHuFzCIsoyMPuqrSszrt4_3x24pC7mgccJGHfKFCsSjO19ql2-BPQZdRHpKYbpQhnRDCikqAO8wrGzb-1R9oSxxVzp3Sji1Dqz4CD75wicflk2pEooWt_AQ-XV4egNnBVke6LyFy9mCW8J_X5XJrKhtiaqNOp9oPPp8f8m1rN1eFcOq4fpKXwkRKXgf6Sss8NM7N0DJ1YSJJaOBSifQFDgnRdlohm70fZ3rLe6luLdF6PQikmYwgEJWq60HsiOqgg"
+							}
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user\": 1,\n    \"follower\": 5\n}",
+							"raw": "{\n    \"user\": 5,\n    \"follower\": 12\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8090/api/followers/"
+						"url": "http://127.0.0.1:8090/api/followers/create"
 					},
 					"response": []
 				},
@@ -169,7 +225,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://127.0.0.1:8090/api/followers"
+						"url": "http://127.0.0.1:8090/api/followers/delete/1"
 					},
 					"response": []
 				}
@@ -181,9 +237,30 @@
 				{
 					"name": "get all chanels",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ3MDkwNzYsImV4cCI6MTcwNDcxMjY3Niwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.DdRHdwvgJxXuUnMfvtKHtDDYMS56vuHyyaNlHKh5xn2FdXkQEq55mxiOKdqzxoS_vnyut2ZWfKpVZA2H6Jwo9YkOMhwL-Xg3FC9MCdLVoCu9i0m5FqDSREhsHsZyTN89aY7HBtklPDEgnaqSNULHbozT7oCIEZjTj6fHfUjjluR-zpIREJhTAHxWpfRLT4EzTY1mu6HsC5nZQAuKwsm7jniO9ibs5wUxQ9bECU4BW3OWR2jEyhdsWFO65kFjqgwbORXoCQU9dXTpSBGyERVCY5S6Q7dQYdACmINBp3gaBiEDJ9nXJwnvrCWWokW9tkVFja1GzqqSoNk2uzYVEGMUwA"
+							}
+						},
 						"method": "GET",
 						"header": [],
 						"url": "http://127.0.0.1:8090/api/chanels"
+					},
+					"response": []
+				},
+				{
+					"name": "get curent user  chanels",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ3MTA5MzksImV4cCI6MTcwNDcxNDUzOSwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.Ex-gI1Y_NRwft87QFUbBlQ7KRm5ljJZ1JSmrCgd2m5TplsMfAiTydYOLXb22cNcKALvQAL0p760lUnzPdi8usBanGS1UhUPQRVoXD4qaoYwuDc0AFRfz2FtTLu78jIufVW81gAhncIFX6nAUTr8DJC7gMHUNUK3QH5SwguWQ2Zwy1YHTz2WJ0Swme7MQTXH0O5949x-MrZaqb8zCA_21QVpg0xRrHIA1GWDZ8b7AIKgOWMsU_U7elTxOzSGs1QiM7rl09ZzxhVtVfV8QyGQjUoytYNwi7ZA8XU8qW0qPINl4IWBomuN6Ybp4Y8ONXMeOGXpEEJe7nGpRo-TAyjqtEA"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8090/api/chanels/user"
 					},
 					"response": []
 				},
@@ -197,20 +274,50 @@
 					"response": []
 				},
 				{
-					"name": "Add chanels",
+					"name": "Add User to chanel",
 					"request": {
-						"method": "POST",
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ3MDkwNzYsImV4cCI6MTcwNDcxMjY3Niwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.DdRHdwvgJxXuUnMfvtKHtDDYMS56vuHyyaNlHKh5xn2FdXkQEq55mxiOKdqzxoS_vnyut2ZWfKpVZA2H6Jwo9YkOMhwL-Xg3FC9MCdLVoCu9i0m5FqDSREhsHsZyTN89aY7HBtklPDEgnaqSNULHbozT7oCIEZjTj6fHfUjjluR-zpIREJhTAHxWpfRLT4EzTY1mu6HsC5nZQAuKwsm7jniO9ibs5wUxQ9bECU4BW3OWR2jEyhdsWFO65kFjqgwbORXoCQU9dXTpSBGyERVCY5S6Q7dQYdACmINBp3gaBiEDJ9nXJwnvrCWWokW9tkVFja1GzqqSoNk2uzYVEGMUwA"
+							}
+						},
+						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user\": 1,\n    \"contact\": 5\n}",
+							"raw": "{\n    \"users\": [\n         5, 10, 12\n    ]\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8090/api/chanels"
+						"url": "http://127.0.0.1:8090/api/chanels/addUser/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Add chanels",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ1MDQ0NTMsImV4cCI6MTcwNDUwODA1Mywicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.U_Gg643xmvpGC5fuJKmdEyxrI2o-bjU1uaXwYyDXDLLZl1dZwt6NlgWNvp2uXyQf_rMNqGQtXDtIFUQ5o-AFRSHuaiJSXgGkD2SAH1-2Xva0aSKicD6m21dlNLHBHESy5hQHbRznwvaPseqarhyhD1G8tD3Py-RO5v_yw0YVhKvkh3g_ePojHaNQ44jNUPKol8z6kwZcl0rmeufrK-CXrIblfQplY5KmbhGs-kZ5I4qsIgkuw5TOSvNkAF8-fTZ5gVwNtXe68kDPYhxaXCu830POOgcaidHU5NoVxp1LWHpc7n-OGQBCFkkD13NxcmtSVgZbpzXqQJzskXKFLvgyTw"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"users\": [5, 13], // User IDs\n    \"nom\": \"Your Chanel Name\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8090/api/chanels/create"
 					},
 					"response": []
 				},
@@ -231,6 +338,12 @@
 				{
 					"name": "get all messages",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDI5MTA0NDAsImV4cCI6MTcwMjkxNDA0MCwicm9sZXMiOltdLCJlbWFpbCI6Im5ld3VzZXJAZXhhbXBsZS5jb20ifQ.UJlBVKmiitNGXHhoZ1KXpYHlUPOpxNJhfjAObIlUquoW0z12_xvqFcch65Z5gZYIJ2paKYFA8KPQxMINx9Zd48AW-YWFw-CSy8a84thu0Ic7VI7ClzAHpIbapwctRhm16HsgftFP4H0e0YzPN5bv1dCAuMcISXZuuC_8yLMzSfjAP0mf6h0YNqKJEViuLuPaPhyJAEeyeAqf24Am5jnM1D4YV6drzOK5sc6SJGuLKxqagisTSQ9rPlqy3jeu476biYb0b-a620siQXreU66VDj2RVRYjiF--msbNvClIiK1vYsEMsh-urj99sQAtF3SE9slVcQjB4Qb-O5YNyUZzRA"
+							}
+						},
 						"method": "GET",
 						"header": [],
 						"url": "http://127.0.0.1:8090/api/messages"
@@ -267,18 +380,24 @@
 				{
 					"name": "Add messages",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ0OTcwNTIsImV4cCI6MTcwNDUwMDY1Miwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.bWPmZlhM1hlK6huiYMB7mKzRelsgR-TrkIVMOtK3djESSq8sFIOiW0ozvB7jPz6NeN3rZ4FzyZT5o2udxzx-SYlBhGigNARPTRrvB7iKQWBHNDtP9smcqdeZuI4S8Zq5Zp9tLnkXkFlbc5me5BTo5oIIgjnD1w4wW3rWIaIPS-EGjpynpts-ZiBsWg0kRpk8KOMPiGjbq7yMGQwaLa8KrLc3ColCDJSyGJPUPyZOUSlT2f9dkBGaWBP14tkghAlO5VtFOzanWTbxJR2JNMpGyna9HZPZpYepRIhynPPZEinZcK_dPQtZnb5RlBpdrBpchwjTCtVIT1lmEGvQekfVFg"
+							}
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user\": 1,\n    \"contact\": 5\n}",
+							"raw": "{\n    \"user\": 1,\n    \"userText\": \"sale pute\",\n    \"channel\": 1,\n    \"date\": \"2023-10-27 12:40:34\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8090/api/messages"
+						"url": "http://127.0.0.1:8090/api/messages/send"
 					},
 					"response": []
 				},
@@ -287,7 +406,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://127.0.0.1:8090/api/messages"
+						"url": "http://127.0.0.1:8090/api/messages/delete/1"
 					},
 					"response": []
 				}

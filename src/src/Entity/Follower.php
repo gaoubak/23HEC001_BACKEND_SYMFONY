@@ -8,7 +8,9 @@ use App\Entity\Chanel;
 use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity()
- * @ORM\Table(name="follower")
+ * @ORM\Table(name="follower" , uniqueConstraints={
+ *     @ORM\UniqueConstraint(columns={"user_id", "follower_id"})
+ * }))
  */
 class Follower
 {
@@ -36,11 +38,12 @@ class Follower
     private $follower;
 
      /**
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Chanel")
+     * @ORM\JoinColumn(name="chanel_id", referencedColumnName="id")
      * @Groups({"get_follower", "get_chanel"})
      */
-    private  $chanel;
+    private $channel;
+
 
     public function getId(): ?int
     {
@@ -71,22 +74,17 @@ class Follower
         return $this;
     }
 
-    public function getChanel(): ?User
+    public function getChannel(): ?Chanel
     {
-        return $this->chanel;
+        return $this->channel;
     }
 
-    public function setChanel(?User $chanel): self
+    public function setChannel(?Chanel $channel): self
     {
-        $this->chanel = $chanel;
+        $this->channel = $channel;
 
         return $this;
     }
 
-    public function createChanel(): ?Chanel
-    {
-        $chanel = new Chanel();
-        $chanel->setNom($this->getFollower()->getUsername());
-        return $chanel;
-    }
+    
 }
