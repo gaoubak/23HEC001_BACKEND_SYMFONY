@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Chanel;
+use App\Entity\User;
 use App\Form\ChanelType; 
+use App\Repository\UserRepository;
 use App\Manager\ChanelManager;
 use App\Traits\ApiResponseTrait;
 use App\Traits\FormHandlerTrait;
@@ -15,6 +17,8 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\Form\FormFactoryInterface;
 use App\Repository\ChanelRepository; 
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * @Route("/api/chanels")
@@ -27,13 +31,15 @@ class ChanelController extends AbstractFOSRestController
     private $chanelManager;
     private $formFactory;
     private $chanelRepository;
+    private $userRepository;
     private $serializer;
 
-    public function __construct(ChanelManager $chanelManager, FormFactoryInterface $formFactory, ChanelRepository $chanelRepository, SerializerInterface $serializer )
+    public function __construct(ChanelManager $chanelManager,  UserRepository $userRepository,FormFactoryInterface $formFactory, ChanelRepository $chanelRepository, SerializerInterface $serializer )
     {
         $this->chanelManager = $chanelManager;
         $this->formFactory = $formFactory;
         $this->chanelRepository = $chanelRepository;
+        $this->userRepository = $userRepository;
         $this->serializer = $serializer;
     }
 
@@ -93,7 +99,7 @@ class ChanelController extends AbstractFOSRestController
 
     /**
      * @Rest\View(serializerGroups={"chanel"})
-     * @Route("/{id}", name="chanel_update", methods={"PUT"})
+     * @Route("/update/{id}", name="chanel_update", methods={"PUT"})
      */
     public function updateChanelAction(Request $request, Chanel $chanel)
     {
@@ -110,9 +116,41 @@ class ChanelController extends AbstractFOSRestController
         return $this->createApiResponse($form, Response::HTTP_BAD_REQUEST);
     }
 
+     /**
+     * @Route("/addUser/{id}", name="add_user_to_channel", methods={"PUT"})
+     */
+    public function addUsersToChannel(Request $request, Chanel $chanel, Security $security)
+    {
+        $user = $security->getUser();
+
+        if (!$user) {
+            return $this->createApiResponse(['error' => 'User not authenticated'], JsonResponse::HTTP_BAD_REQUEST);
+        }
+
+        $data = json_decode($request->getContent(), true);
+
+        if (!isset($data['users']) || !is_array($data['users'])) {
+            return $this->createApiResponse(['error' => 'Invalid input format'], JsonResponse::HTTP_BAD_REQUEST);
+        }
+
+        $userIds = $data['users'];
+
+        foreach ($userIds as $userId) {
+            $userToAdd = $this->userRepository->find($userId);
+
+            if ($userToAdd && !$chanel->getUsers()->contains($userToAdd)) {
+                $chanel->addUser($userToAdd);
+            }
+        }
+
+        $this->chanelManager->flush();
+
+        return $this->renderUpdatedResponse('Users added to the channel successfully');
+    }
+
     /**
      * @Rest\View(serializerGroups={"chanel"})
-     * @Route("/{id}", name="chanel_delete", methods={"DELETE"})
+     * @Route("/delete/{id}", name="chanel_delete", methods={"DELETE"})
      */
     public function deleteChanelAction(Chanel $chanel)
     {

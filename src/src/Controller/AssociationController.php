@@ -62,7 +62,7 @@ class AssociationController extends AbstractFOSRestController
 
     /**
      * @Rest\View(serializerGroups={"association"})
-     * @Route("/", name="association_create", methods={"POST"})
+     * @Route("/create", name="association_create", methods={"POST"})
      */
     public function createAssociationAction(Request $request)
     {
@@ -82,7 +82,7 @@ class AssociationController extends AbstractFOSRestController
 
     /**
      * @Rest\View(serializerGroups={"association"})
-     * @Route("/{id}", name="association_update", methods={"PUT"})
+     * @Route("/update/{id}", name="association_update", methods={"PUT"})
      */
     public function updateAssociationAction(Request $request, Association $association)
     {
@@ -101,7 +101,7 @@ class AssociationController extends AbstractFOSRestController
 
     /**
      * @Rest\View(serializerGroups={"association"})
-     * @Route("/{id}", name="association_delete", methods={"DELETE"})
+     * @Route("/delete/{id}", name="association_delete", methods={"DELETE"})
      */
     public function deleteAssociationAction(Association $association)
     {

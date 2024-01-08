@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Follower;
+use App\Entity\User;
 use App\Form\FollowerType;
 use App\Service\FollowerService; 
 use App\Manager\FollowerManager;
@@ -61,6 +62,18 @@ class FollowerController extends AbstractFOSRestController
         $serializeFollower = $this->serializer->normalize($follower, null, ['groups' => ['get_follower']]);
         return $this->createApiResponse($serializeFollower, Response::HTTP_OK);
     }
+   
+    /**
+     * @Rest\View(serializerGroups={"get_follower"})
+     * @Route("/user-followers", name="user_followers", methods={"GET"})
+     */
+    public function listUserFollowers(User $user)
+    {
+        $userFollowers = $this->followerRepository->findByUser($user);
+        $serializeFollowers = $this->serializer->normalize($userFollowers, null, ['groups' => ['get_follower']]);
+        return $this->createApiResponse($serializeFollowers, Response::HTTP_OK);
+    }
+
 
     /**
      * @Route("/create", name="follower_create", methods={"POST"})
@@ -82,7 +95,7 @@ class FollowerController extends AbstractFOSRestController
 
     /**
      * @Rest\View(serializerGroups={"follower"})
-     * @Route("/{id}", name="follower_update", methods={"PUT"})
+     * @Route("/update/{id}", name="follower_update", methods={"PUT"})
      */
     public function updateFollowerAction(Request $request, Follower $follower)
     {
@@ -101,7 +114,7 @@ class FollowerController extends AbstractFOSRestController
 
     /**
      * @Rest\View(serializerGroups={"follower"})
-     * @Route("/{id}", name="follower_delete", methods={"DELETE"})
+     * @Route("/delete/{id}", name="follower_delete", methods={"DELETE"})
      */
     public function deleteFollowerAction(Follower $follower)
     {

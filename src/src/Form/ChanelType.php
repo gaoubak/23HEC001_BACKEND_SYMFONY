@@ -21,7 +21,9 @@ class ChanelType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
             ])
-            ->add('nom');
+            ->add('nom')
+            ->add('chanelPhoto')
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

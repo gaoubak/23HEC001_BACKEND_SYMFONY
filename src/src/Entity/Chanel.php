@@ -18,7 +18,7 @@ class Chanel
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"get_chanel", "get_user", "get_message","get_my_chanel"})
+     * @Groups({"get_chanel", "get_my_chanel", "get_user", "get_message","get_follower"})
      */
     private $id;
 
@@ -28,13 +28,13 @@ class Chanel
      *      joinColumns={@ORM\JoinColumn(name="chanel_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
      * )
-     * @Groups({"get_chanel","get_my_chanel"})
+     * @Groups({"get_chanel", "get_my_chanel"})
      */
     private $users;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"get_chanel", "get_user", "get_message","get_my_chanel"})
+     * @Groups({"get_chanel", "get_my_chanel", "get_user", "get_message","get_follower"})
      */
     private $nom;
 
@@ -50,7 +50,7 @@ class Chanel
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Groups({"get_chanel", "get_user", "get_message","get_my_chanel"})
+     * @Groups({"get_chanel", "get_my_chanel", "get_user", "get_message","get_follower"})
      */
     private $chanelPhoto;
 

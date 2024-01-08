@@ -104,7 +104,7 @@ class MessageController extends AbstractFOSRestController
 
     /**
      * @Rest\View(serializerGroups={"message"})
-     * @Route("/{id}", name="message_update", methods={"PUT"})
+     * @Route("/update/{id}", name="message_update", methods={"PUT"})
      */
     public function updateMessageAction(Request $request, Message $message)
     {
@@ -123,7 +123,7 @@ class MessageController extends AbstractFOSRestController
 
     /**
      * @Rest\View(serializerGroups={"message"})
-     * @Route("/{id}", name="message_delete", methods={"DELETE"})
+     * @Route("/delete/{id}", name="message_delete", methods={"DELETE"})
      */
     public function deleteMessageAction(Message $message)
     {

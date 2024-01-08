@@ -21,7 +21,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel"})
+     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel", "get_my_follower"})
      */
     private $id;
 
