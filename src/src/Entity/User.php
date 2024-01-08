@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -48,6 +49,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $userPhoto;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel"})
+     */
+    private $description;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Chanel", mappedBy="users")
      * @Groups({"get_user", "get_follower", "get_association"})
      */
@@ -65,6 +72,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->chanels = new ArrayCollection();
+        $this->associations = new ArrayCollection();
     }
 
     public function eraseCredentials()
@@ -101,7 +109,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    // Other getters and setters
 
     public function getId(): ?int
     {
@@ -116,6 +123,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUserPhoto(?string $userPhoto): self
     {
         $this->userPhoto = $userPhoto;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }
@@ -177,6 +196,45 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getChanels(): Collection
     {
         return $this->chanels;
+    }
+
+    public function removeChanel(Chanel $chanel): static
+    {
+        if ($this->chanels->removeElement($chanel)) {
+            $chanel->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Association>
+     */
+    public function getAssociations(): Collection
+    {
+        return $this->associations;
+    }
+
+    public function addAssociation(Association $association): static
+    {
+        if (!$this->associations->contains($association)) {
+            $this->associations->add($association);
+            $association->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAssociation(Association $association): static
+    {
+        if ($this->associations->removeElement($association)) {
+            // set the owning side to null (unless already changed)
+            if ($association->getUser() === $this) {
+                $association->setUser(null);
+            }
+        }
+
+        return $this;
     }
 
 }
