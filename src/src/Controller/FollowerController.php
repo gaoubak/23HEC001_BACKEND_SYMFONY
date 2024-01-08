@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Follower;
-use App\Form\FollowerType; 
+use App\Entity\User;
+use App\Form\FollowerType;
+use App\Service\FollowerService; 
 use App\Manager\FollowerManager;
 use App\Traits\ApiResponseTrait;
 use App\Traits\FormHandlerTrait;
@@ -28,13 +30,15 @@ class FollowerController extends AbstractFOSRestController
     private $formFactory;
     private $followerRepository;
     private $serializer;
+    private $followerService;
 
-    public function __construct(FollowerManager $followerManager, FormFactoryInterface $formFactory, FollowerRepository $followerRepository, SerializerInterface $serializer)
+    public function __construct(FollowerManager $followerManager, FormFactoryInterface $formFactory, FollowerRepository $followerRepository, SerializerInterface $serializer, FollowerService $followerService)
     {
         $this->followerManager = $followerManager;
         $this->formFactory = $formFactory;
         $this->followerRepository = $followerRepository;
         $this->serializer = $serializer;
+        $this->followerService = $followerService;
     }
 
 
@@ -58,9 +62,21 @@ class FollowerController extends AbstractFOSRestController
         $serializeFollower = $this->serializer->normalize($follower, null, ['groups' => ['get_follower']]);
         return $this->createApiResponse($serializeFollower, Response::HTTP_OK);
     }
+   
+    /**
+     * @Rest\View(serializerGroups={"get_follower"})
+     * @Route("/user-followers", name="user_followers", methods={"GET"})
+     */
+    public function listUserFollowers(User $user)
+    {
+        $userFollowers = $this->followerRepository->findByUser($user);
+        $serializeFollowers = $this->serializer->normalize($userFollowers, null, ['groups' => ['get_follower']]);
+        return $this->createApiResponse($serializeFollowers, Response::HTTP_OK);
+    }
+
 
     /**
-     * @Route("/", name="follower_create", methods={"POST"})
+     * @Route("/create", name="follower_create", methods={"POST"})
      */
     public function createFollowerAction(Request $request)
     {
@@ -69,9 +85,7 @@ class FollowerController extends AbstractFOSRestController
         $this->handleForm($request, $form);
 
         if ($form->isValid()) {
-            $this->followerManager->save($follower);
-            $this->followerManager->flush();
-            $follower->createChanel($follower);
+            $this->followerService->createFollowerWithChanel($follower);
 
             return $this->renderCreatedResponse('Follower created successfully');
         }
@@ -81,7 +95,7 @@ class FollowerController extends AbstractFOSRestController
 
     /**
      * @Rest\View(serializerGroups={"follower"})
-     * @Route("/{id}", name="follower_update", methods={"PUT"})
+     * @Route("/update/{id}", name="follower_update", methods={"PUT"})
      */
     public function updateFollowerAction(Request $request, Follower $follower)
     {
@@ -100,7 +114,7 @@ class FollowerController extends AbstractFOSRestController
 
     /**
      * @Rest\View(serializerGroups={"follower"})
-     * @Route("/{id}", name="follower_delete", methods={"DELETE"})
+     * @Route("/delete/{id}", name="follower_delete", methods={"DELETE"})
      */
     public function deleteFollowerAction(Follower $follower)
     {

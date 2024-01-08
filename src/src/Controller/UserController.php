@@ -45,7 +45,6 @@ class UserController extends AbstractFOSRestController
      */
     public function getCurrentUserAction()
     {
-        // Get the current user from the security context
         $user = $this->getUser();
 
         $serializedUser = $this->serializer->normalize($user, null, ['groups' => ['get_user']]);
@@ -103,7 +102,7 @@ class UserController extends AbstractFOSRestController
 
     /**
      * @Rest\View(serializerGroups={"user"})
-     * @Route("/{id}", name="update_user", methods={"PUT"})
+     * @Route("/update/{id}", name="update_user", methods={"PUT"})
      */
     public function updateUser(Request $request, User $user)
     {
@@ -122,7 +121,7 @@ class UserController extends AbstractFOSRestController
 
     /**
      * @Rest\View(serializerGroups={"user"})
-     * @Route("/{id}", name="delete_user", methods={"DELETE"})
+     * @Route("/delete/{id}", name="delete_user", methods={"DELETE"})
      */
     public function deleteUser(User $user)
     {

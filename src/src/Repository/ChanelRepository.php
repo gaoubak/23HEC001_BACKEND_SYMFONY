@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Chanel;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,6 +20,16 @@ class ChanelRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Chanel::class);
+    }
+
+    public function findByUser(User $user)
+    {
+        return $this->createQueryBuilder('c')
+            ->join('c.users', 'u')
+            ->andWhere('u.id = :userId')
+            ->setParameter('userId', $user->getId())
+            ->getQuery()
+            ->getResult();
     }
 
 //    /**

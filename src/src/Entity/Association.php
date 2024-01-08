@@ -7,7 +7,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="association")
+ * @ORM\Table(name="association", uniqueConstraints={
+ *     @ORM\UniqueConstraint(columns={"user_id", "chanel_id"})
+ * })
  */
 class Association
 {
@@ -32,6 +34,7 @@ class Association
      * @Groups({"association"})
      */
     private $chanel;
+    
 
     public function getId(): ?int
     {
