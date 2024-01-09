@@ -17,11 +17,11 @@ class UserType extends AbstractType
         $builder
             ->add('username', TextType::class)
             ->add('email', EmailType::class)
-            ->add('password', PasswordType::class)
             ->add('description', TextType::class)
             ->add('userPhoto', FileType::class, [
                 'required' => false,
-            ]);
+                'mapped' => false,
+            ]);          
     }
 
     public function configureOptions(OptionsResolver $resolver)

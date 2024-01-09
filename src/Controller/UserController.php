@@ -15,6 +15,7 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 use App\Form\RegistrationFormType;
+use App\Form\UserType;
 use Symfony\Component\Serializer\SerializerInterface;
 
 
@@ -107,17 +108,29 @@ class UserController extends AbstractFOSRestController
     public function updateUser(Request $request, User $user)
     {
         $form = $this->formFactory->create(UserType::class, $user);
-        $this->handleForm($request, $form);
-
+        $form->submit($request->request->all(), false); // Process the form data
+        
         if ($form->isValid()) {
+            $uploadedImage = $form->get('userPhoto')->getData();
+            if ($uploadedImage) {
+                // Process the uploaded image and save it
+                $imageUrls = $this->userManager->processAndSaveImages($uploadedImage);
+                $destination = 'your_destination_directory';
+                $uploadedImage->move($destination, $uploadedImage->getClientOriginalName());
+                dump($imageUrls);
+                die("Image saved successfully");
+                // $user->setUserPhoto($imageUrls);
+            }
+
             $this->userManager->save($user);
             $this->userManager->flush();
 
             return $this->renderUpdatedResponse('User updated successfully');
         }
 
-        return $this->createApiResponse($form, Response::HTTP_BAD_REQUEST);
+        return $this->createApiResponse($form->getErrors(true), Response::HTTP_BAD_REQUEST);
     }
+
 
     /**
      * @Rest\View(serializerGroups={"user"})

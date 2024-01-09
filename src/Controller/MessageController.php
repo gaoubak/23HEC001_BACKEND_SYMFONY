@@ -96,7 +96,14 @@ class MessageController extends AbstractFOSRestController
             $this->messageManager->save($message);
             $this->messageManager->flush();
 
-            return $this->renderCreatedResponse('Message created successfully');
+            // Send a ping to notify about the new message
+            $update = new Update(
+                ['http://localhost:9090/.well-known/mercure'],
+                json_encode(['user' => $message->getUser()->getUsername(), 'content' => $message->getUserText(), "channel" => $message->getChannel()]),
+            );
+            $hub->publish($update);
+
+              return $this->renderCreatedResponse('Message created successfully');
         }
 
         return $this->createApiResponse($form, Response::HTTP_BAD_REQUEST);
