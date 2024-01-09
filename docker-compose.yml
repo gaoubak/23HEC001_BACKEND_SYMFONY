@@ -9,68 +9,74 @@ services:
     restart: always
     working_dir: /var/www/html/
     volumes:
-      - ./src:/var/www/html/
+      - ./:/var/www/html/
     networks:
       - symfony
     depends_on:
-      - db
-      - mercure
+      - database
 
   nginx:
-    image: nginx:alpine  # Use the Alpine variant of the Nginx image
+    image: nginx:alpine 
     container_name: symfony_nginx
     restart: unless-stopped
     ports:
       - 8090:80
     volumes:
-      - ./src:/var/www/html/
-      - ./src/nginx/conf.d:/etc/nginx/conf.d
+      - .:/var/www/html/
+      - ./nginx/conf.d:/etc/nginx/conf.d
     depends_on:
       - alpine
     networks:
       - symfony
 
-  db:
+  database:
     image: mariadb:latest
-    container_name: symfony_db
+    container_name: symfony_database
     restart: always
     ports:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_ROOT_: root
-      MYSQL_DATABASE: chat22_db
+      MYSQL_DATABASE: chat2_db
     networks:
       - symfony
     volumes:
       - db-data:/var/lib/mysql
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
 
-  mercure:
+  caddy:
     image: dunglas/mercure
-    container_name: symfony_mercure
     restart: unless-stopped
+    container_name: mercure_docker
     environment:
       SERVER_NAME: ":80"
       MERCURE_PUBLISHER_JWT_KEY: "!ChangeMe!"
       MERCURE_SUBSCRIBER_JWT_KEY: "!ChangeMe!"
-      MERCURE_EXTRA_DIRECTIVES: cors_origins "http://localhost:3000"
-    ports:
-      - "9090:80"
-      - "443:443"
+      MERCURE_EXTRA_DIRECTIVES: |  
+        cors_origins http://localhost:3000 
+        cors_origins http://localhost:8090 
+        anonymous
+    command: /usr/bin/caddy run -config /etc/caddy/Caddyfile.dev --adapter caddyfile --config /etc/caddy/Caddyfile
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - symfony
+
 
   phpmyadmin: 
     image: phpmyadmin/phpmyadmin
     container_name: symfony_phpmyadmin
     restart: always
     environment:
-      PMA_HOST: db
+      PMA_HOST: database
       PMA_USER: root
       PMA_PASSWORD: root
     ports:
       - 8181:80  
     depends_on:
-      - db
+      - database
     networks:
       - symfony
       
@@ -80,3 +86,6 @@ networks:
 
 volumes:
   db-data:
+  mercure_data:
+  caddy_data:
+  caddy_config:
