@@ -19,6 +19,7 @@ use App\Repository\ChanelRepository;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Security\Core\Security;
+use App\Service\FileUploader;
 
 /**
  * @Route("/api/chanels")
@@ -33,14 +34,17 @@ class ChanelController extends AbstractFOSRestController
     private $chanelRepository;
     private $userRepository;
     private $serializer;
+    private $fileUploader;
 
-    public function __construct(ChanelManager $chanelManager,  UserRepository $userRepository,FormFactoryInterface $formFactory, ChanelRepository $chanelRepository, SerializerInterface $serializer )
+
+    public function __construct(ChanelManager $chanelManager,  UserRepository $userRepository,FormFactoryInterface $formFactory, ChanelRepository $chanelRepository, SerializerInterface $serializer, FileUploader $fileUploader)
     {
         $this->chanelManager = $chanelManager;
         $this->formFactory = $formFactory;
         $this->chanelRepository = $chanelRepository;
         $this->userRepository = $userRepository;
         $this->serializer = $serializer;
+        $this->fileUploader = $fileUploader;
     }
 
     /**

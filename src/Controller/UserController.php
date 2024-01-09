@@ -15,6 +15,7 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 use App\Form\RegistrationFormType;
+use App\Service\FileUploader;
 use App\Form\UserType;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -31,13 +32,15 @@ class UserController extends AbstractFOSRestController
     private $formFactory;
     private $userRepository;
     private $serializer;
+    private $fileUploader;
 
-    public function __construct(UserManager $userManager, FormFactoryInterface $formFactory, UserRepository $userRepository, SerializerInterface $serializer)
+    public function __construct(UserManager $userManager, FormFactoryInterface $formFactory, UserRepository $userRepository, SerializerInterface $serializer, FileUploader $fileUploader)
     {
         $this->userManager = $userManager;
         $this->formFactory = $formFactory;
         $this->userRepository = $userRepository;
         $this->serializer = $serializer;
+        $this->fileUploader = $fileUploader;
     }
 
     /**
@@ -111,15 +114,12 @@ class UserController extends AbstractFOSRestController
         $form->submit($request->request->all(), false); // Process the form data
         
         if ($form->isValid()) {
-            $uploadedImage = $form->get('userPhoto')->getData();
-            if ($uploadedImage) {
-                // Process the uploaded image and save it
-                $imageUrls = $this->userManager->processAndSaveImages($uploadedImage);
-                $destination = 'your_destination_directory';
-                $uploadedImage->move($destination, $uploadedImage->getClientOriginalName());
-                dump($imageUrls);
+            $uploadedFile = $form->get('userPhoto')->getData();
+            if ($uploadedFile) {
+                $fileName = $this->fileUploader->upload($uploadedFile);
+                dump($fileName);
                 die("Image saved successfully");
-                // $user->setUserPhoto($imageUrls);
+                $user->setUserPhoto($fileName);
             }
 
             $this->userManager->save($user);
