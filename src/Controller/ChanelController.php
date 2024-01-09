@@ -92,6 +92,7 @@ class ChanelController extends AbstractFOSRestController
         $this->handleForm($request, $form);
 
         if ($form->isValid()) {
+
             $this->chanelManager->save($chanel);
             $this->chanelManager->flush();
 
@@ -111,6 +112,15 @@ class ChanelController extends AbstractFOSRestController
         $this->handleForm($request, $form);
 
         if ($form->isValid()) {
+
+            $uploadedFile = $form->get('chanelPhoto')->getData();
+            if ($uploadedFile) {
+                $fileName = $this->fileUploader->upload($uploadedFile);
+                dump($fileName);
+                die("Image saved successfully");
+                $chanel->setChanelPhoto($fileName);
+            }
+
             $this->chanelManager->save($chanel);
             $this->chanelManager->flush();
 
