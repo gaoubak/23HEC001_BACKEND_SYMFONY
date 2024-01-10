@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\Follower;
 use App\Entity\Chanel;
+use App\Entity\User;
 use App\Entity\Association;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -31,6 +32,12 @@ class FollowerService
         return $follower;
     }
 
+    public function createFollowerWithoutChanel($users,Chanel $chanel)
+    {        
+        $this->createAssociationsForAddChannelMembers($chanel, $users);
+
+    }
+
 
     private function createChanel(): Chanel
     {
@@ -40,6 +47,24 @@ class FollowerService
 
         return $chanel;
     }
+
+    private function createAssociationsForAddChannelMembers(Chanel $chanel, array $users): void
+    {
+        foreach ($users as $user) {
+            // Ensure that $user is not null
+            if ($user instanceof User) {
+                // Create associations for the user
+                $userAssociation = new Association();
+                $userAssociation->setUser($user);
+                $userAssociation->setChanel($chanel);
+                $this->entityManager->persist($userAssociation);
+            }
+        }
+
+        // Flush the associations
+        $this->entityManager->flush();
+    }
+
 
     private function createAssociationsForChannelMembers(Follower $follower, Chanel $chanel): void
     {

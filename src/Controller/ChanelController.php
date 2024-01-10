@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Chanel;
 use App\Entity\User;
+use App\Entity\Follower;
 use App\Form\ChanelType; 
+use App\Service\FollowerService; 
 use App\Repository\UserRepository;
 use App\Manager\ChanelManager;
 use App\Traits\ApiResponseTrait;
@@ -119,7 +121,7 @@ class ChanelController extends AbstractFOSRestController
      /**
      * @Route("/addUser/{id}", name="add_user_to_channel", methods={"PUT"})
      */
-    public function addUsersToChannel(Request $request, Chanel $chanel, Security $security)
+    public function addUsersToChannel(Request $request, Chanel $chanel, FollowerService $followerService, Security $security)
     {
         $user = $security->getUser();
 
@@ -135,18 +137,32 @@ class ChanelController extends AbstractFOSRestController
 
         $userIds = $data['users'];
 
+        $usersToAdd = [];
+
         foreach ($userIds as $userId) {
             $userToAdd = $this->userRepository->find($userId);
-
+        
             if ($userToAdd && !$chanel->getUsers()->contains($userToAdd)) {
                 $chanel->addUser($userToAdd);
+        
+                // Create a Follower entity and associate it with the added user and the current channel
+                $follower = new Follower();
+                $follower->setUser($userToAdd);
+                $follower->setFollower($user);
+        
+                // Add user to the array for later processing
+                $usersToAdd[] = $userToAdd;
             }
         }
+        
+        // Use the FollowerService to create Followers without Chanel and Associations
+        $followerService->createFollowerWithoutChanel($usersToAdd, $chanel);
 
         $this->chanelManager->flush();
 
         return $this->renderUpdatedResponse('Users added to the channel successfully');
     }
+
 
     /**
      * @Rest\View(serializerGroups={"chanel"})

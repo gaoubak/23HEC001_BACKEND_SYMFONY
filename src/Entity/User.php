@@ -5,11 +5,14 @@ namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Follower;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use JMS\Serializer\Annotation\MaxDepth;
+
 
 /**
  * @ORM\Entity()
@@ -21,7 +24,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel", "get_my_follower"})
+     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel"})
      */
     private $id;
 
@@ -62,8 +65,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\OneToMany(targetEntity="Association", mappedBy="user")
+     * @Groups({"get_user", "get_follower", "get_association","get_current_user_chanel"})
      */
     private $associations;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Follower", mappedBy="user")
+     * @Groups({"get_user", "get_follower", "get_association", "get_current_user_follower"})
+     */
+    private $followers;
     
     private $plainPassword;
 
@@ -73,6 +83,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->chanels = new ArrayCollection();
         $this->associations = new ArrayCollection();
+        $this->followers = new ArrayCollection();
     }
 
     public function eraseCredentials()
@@ -231,6 +242,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($association->getUser() === $this) {
                 $association->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function addFollower(Follower $follower): self
+    {
+        if (!$this->followers->contains($follower)) {
+            $this->followers[] = $follower;
+            $follower->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function getFollowers(): Collection
+    {
+        return $this->followers;
+    }
+
+    public function removeFollower(Follower $follower): self
+    {
+        if ($this->followers->removeElement($follower)) {
+            // set the owning side to null (unless already changed)
+            if ($follower->getUser() === $this) {
+                $follower->setUser(null);
             }
         }
 
