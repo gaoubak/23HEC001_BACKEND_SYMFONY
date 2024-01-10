@@ -17,21 +17,21 @@ class Association
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"association"})
+     * @Groups({"association","get_chanel", "get_current_user_chanel"})
      */
     private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     * @Groups({"association"})
+     * @Groups({"association","get_chanel"})
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="Chanel")
      * @ORM\JoinColumn(name="chanel_id", referencedColumnName="id")
-     * @Groups({"association"})
+     * @Groups({"association", "get_current_user_chanel"})
      */
     private $chanel;
     

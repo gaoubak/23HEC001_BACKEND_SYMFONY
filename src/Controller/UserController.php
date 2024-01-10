@@ -48,7 +48,41 @@ class UserController extends AbstractFOSRestController
     {
         $user = $this->getUser();
 
-        $serializedUser = $this->serializer->normalize($user, null, ['groups' => ['get_user']]);
+        $serializedUser = $this->serializer->normalize($user, null, ['groups' => ['get_current_user']]);
+        return $this->createApiResponse($serializedUser, Response::HTTP_OK);
+    }
+
+    /**
+     * @Rest\View(serializerGroups={"get_user"})
+     * @Route("/current-follower", name="get_current_user_follower", methods={"GET"})
+     */
+    public function getCurrentUserFollowerAction()
+    {
+        $user = $this->getUser();
+        $followers = $user->getFollowers();
+
+        $followersData = [];
+        foreach ($followers as $follower) {
+            $followersData[] = [
+                'Id' => $follower->getFollower()->getId(),
+                'Username' => $follower->getFollower()->getUsername(),
+                'Email' => $follower->getFollower()->getEmail(),
+                'Photo' => $follower->getFollower()->getUserPhoto()
+            ];
+        }
+
+        return $this->createApiResponse($followersData, Response::HTTP_OK);
+    }
+
+    /**
+     * @Rest\View(serializerGroups={"get_user"})
+     * @Route("/current-chanel", name="get_current_user_chanel", methods={"GET"})
+     */
+    public function getCurrentUserChanlAction()
+    {
+        $user = $this->getUser();
+
+        $serializedUser = $this->serializer->normalize($user, null, ['groups' => ['get_current_user_chanel']]);
         return $this->createApiResponse($serializedUser, Response::HTTP_OK);
     }
 
