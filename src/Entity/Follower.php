@@ -6,6 +6,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Chanel;
 use Symfony\Component\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\MaxDepth;
+
 /**
  * @ORM\Entity()
  * @ORM\Table(name="follower" , uniqueConstraints={
@@ -19,7 +21,7 @@ class Follower
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"get_follower", "get_chanel"})
+     * @Groups({"get_follower", "get_chanel", "get_user","get_current_user_follower"})
      */
     private $id;
 
@@ -33,14 +35,17 @@ class Follower
     /**
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="follower_id", referencedColumnName="id")
-     * @Groups({"get_follower", "get_chanel"})
+     * @Groups({"get_follower", "get_chanel", "get_user","get_current_user_follower"})
+     * @MaxDepth(1)
      */
     private $follower;
+
+
 
      /**
      * @ORM\ManyToOne(targetEntity="Chanel")
      * @ORM\JoinColumn(name="chanel_id", referencedColumnName="id")
-     * @Groups({"get_follower", "get_chanel"})
+     * @Groups({"get_follower", "get_chanel", "get_current_user_follower"})
      */
     private $channel;
 

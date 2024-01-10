@@ -62,18 +62,6 @@ class FollowerController extends AbstractFOSRestController
         $serializeFollower = $this->serializer->normalize($follower, null, ['groups' => ['get_follower']]);
         return $this->createApiResponse($serializeFollower, Response::HTTP_OK);
     }
-   
-    /**
-     * @Rest\View(serializerGroups={"get_follower"})
-     * @Route("/user-followers", name="user_followers", methods={"GET"})
-     */
-    public function listUserFollowers(User $user)
-    {
-        $userFollowers = $this->followerRepository->findByUser($user);
-        $serializeFollowers = $this->serializer->normalize($userFollowers, null, ['groups' => ['get_follower']]);
-        return $this->createApiResponse($serializeFollowers, Response::HTTP_OK);
-    }
-
 
     /**
      * @Route("/create", name="follower_create", methods={"POST"})

@@ -18,7 +18,7 @@ class Chanel
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"get_chanel", "get_my_chanel", "get_user", "get_message","get_follower"})
+     * @Groups({"get_chanel", "get_my_chanel", "get_user", "get_message","get_follower","get_current_user_chanel"})
      */
     private $id;
 
@@ -28,13 +28,12 @@ class Chanel
      *      joinColumns={@ORM\JoinColumn(name="chanel_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
      * )
-     * @Groups({"get_chanel", "get_my_chanel"})
      */
     private $users;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"get_chanel", "get_my_chanel", "get_user", "get_message","get_follower"})
+     * @Groups({"get_chanel", "get_my_chanel", "get_user", "get_message","get_follower","get_current_user_chanel"})
      */
     private $nom;
 
@@ -45,12 +44,13 @@ class Chanel
 
     /**
      * @ORM\OneToMany(targetEntity="Association", mappedBy="chanel")
+     * @Groups({"get_chanel", "get_my_chanel", "get_user", "get_message","get_follower"})
      */
     private $associations;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Groups({"get_chanel", "get_my_chanel", "get_user", "get_message","get_follower"})
+     * @Groups({"get_chanel", "get_my_chanel", "get_user", "get_message","get_follower","get_current_user_chanel"})
      */
     private $chanelPhoto;
 
