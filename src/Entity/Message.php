@@ -35,7 +35,6 @@ class Message
     /**
      * @ORM\ManyToOne(targetEntity="Chanel")
      * @ORM\JoinColumn(name="channel_id", referencedColumnName="id")
-     * @Groups({"get_message"})
      */
     private $channel;
 
