@@ -53,7 +53,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel"})
+     * @Groups({"get_user", "get_follower"})
      */
     private $description;
 
