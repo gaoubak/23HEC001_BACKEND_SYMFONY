@@ -1,0 +1,9 @@
+FROM caddy:latest
+
+RUN apk add --no-cache ca-certificates
+
+# Install Mercure
+RUN wget -O /usr/local/bin/mercure https://github.com/dunglas/mercure/releases/download/v0.10.2/mercure-linux-amd64 \
+    && chmod +x /usr/local/bin/mercure
+
+CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]

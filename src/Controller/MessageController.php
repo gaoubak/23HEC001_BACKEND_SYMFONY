@@ -15,6 +15,9 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\Form\FormFactoryInterface;
 use App\Repository\MessageRepository; 
 use Symfony\Component\Serializer\SerializerInterface;
+use App\Service\Mercure\MercureService;
+use App\Service\Mercure\JwtMercureService;
+use Symfony\Component\Mercure\Update;
 
 
 /**
@@ -82,32 +85,49 @@ class MessageController extends AbstractFOSRestController
         return $this->createApiResponse($serializeMessage, Response::HTTP_OK);
     }
 
+
+
     /**
      * @Rest\View(serializerGroups={"message"})
      * @Route("/send", name="message_create", methods={"POST"})
      */
-    public function createMessageAction(Request $request)
+    public function createMessageAction(Request $request, MercureService $mercureService, JwtMercureService $jwtMercureService)
     {
         $message = new Message();
-        $form = $this->formFactory->create(MessageType::class, $message); 
+        $form = $this->formFactory->create(MessageType::class, $message);
         $this->handleForm($request, $form);
-
-        if ($form->isValid()) {
+    
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->messageManager->save($message);
             $this->messageManager->flush();
-
+    
+            // Create JWT for Mercure authentication
+            $jwt = $jwtMercureService->createJwt();
+    
             // Send a ping to notify about the new message
             $update = new Update(
-                ['http://localhost:9090/.well-known/mercure'],
-                json_encode(['user' => $message->getUser()->getUsername(), 'content' => $message->getUserText(), "channel" => $message->getChannel()]),
+                ['http://localhost:9090/.well-known/mercure?topic=chat_room_' . $message->getChannel()->getId()],                json_encode([
+                    'username' => $message->getUser()->getUsername(),
+                    'user_id' => $message->getUser()->getId(),
+                    'content' => $message->getUserText(),
+                    'channel' => $message->getChannel(),
+                    'message_value' => $message->getUserText(),
+                    'message_date' => $message->getDate()->format('Y-m-d H:i:s'),
+                ]),
+                true,
+                'Bearer ' . $jwt
             );
-            $hub->publish($update);
-
-              return $this->renderCreatedResponse('Message created successfully');
+    
+            
+                return $this->renderCreatedResponse('Message created successfully');
+           
         }
-
+    
         return $this->createApiResponse($form, Response::HTTP_BAD_REQUEST);
     }
+    
+
+
 
     /**
      * @Rest\View(serializerGroups={"message"})
