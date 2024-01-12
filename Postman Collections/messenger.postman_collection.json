@@ -104,7 +104,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ3MDcwNDQsImV4cCI6MTcwNDcxMDY0NCwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.TBIRoVHpoxyjnikuWlRbg47SZkFHyQC7uM6HeYo_QFwe5B6KD9ek9bxrcVC6sj151tjvtzzMOQx3PIyXb5mjKqHuFzCIsoyMPuqrSszrt4_3x24pC7mgccJGHfKFCsSjO19ql2-BPQZdRHpKYbpQhnRDCikqAO8wrGzb-1R9oSxxVzp3Sji1Dqz4CD75wicflk2pEooWt_AQ-XV4egNnBVke6LyFy9mCW8J_X5XJrKhtiaqNOp9oPPp8f8m1rN1eFcOq4fpKXwkRKXgf6Sss8NM7N0DJ1YSJJaOBSifQFDgnRdlohm70fZ3rLe6luLdF6PQikmYwgEJWq60HsiOqgg"
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ4MzYyMjYsImV4cCI6MTcwNDgzOTgyNiwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.E-Vg2H87XiyxdKZYs66t1wm3OZHMkkapb532UD_S00PTDs0U8FAiLNjuwcj04XlmhtzcxPAAPyqAV09SexmNVeUy_-LsvVbvaD-apI_aQQ72dbk3fqxoGwYgVkMh73tVKGguwiLo521jzdBd37WeNH-i58_9o6v72CBDlUESSz8A_fo4ALID17vhbhXphk_Tt033UmFHXXVxi0T12XCKGrUZwTMRriBGiMP_cPH47goCm6dTJ7A7BE2qhVqb4Vba4P5lpX1PGa72BvIz64LdBWlKUgjbe3AzMmNp4SHla685ocjRfdHwIc_Ed_Kb-4PeyNd5R6UQItiJmPUsHtiXEA"
 							}
 						},
 						"method": "GET",
@@ -126,6 +126,70 @@
 					"response": []
 				},
 				{
+					"name": "get current user follower",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDUwMTI5NjUsImV4cCI6MTcwNTAxNjU2NSwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.U1sgLiW2Gi0UEEV_YMDKfWATODHSeAH2wU43pD6qjwQ1lSAW1TFPLRCtRZJc17_o9yzBmOfImwzcyexQJ3zRyX2H0G-EY8o-FGCFkdgXelbM-RJVOlz7oPW8h2Ls5vZSgA5F_f7EAY5aceS2-sB5McqY0m9JlLBB5IidVytd0DeEV7-koN3_nLwf-jWTgihWMO_gh8SV5lNqY82M8bRSRnJ6iOmdwAbgfr0Rw5yGQOaPm1QHGiVGZ66ikpd4i3p3Z-2IfZ5WK75tSrxsvEu4EUSor-gefceGRPzX9DqmCDs8h-YiShIIvikj1k5yitzoxY7JI6l8kWKSBZRqBQIUIA"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": "http://127.0.0.1:8090/api/users/current-follower"
+					},
+					"response": []
+				},
+				{
+					"name": "get current user chanel",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDUwMTI5NjUsImV4cCI6MTcwNTAxNjU2NSwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.U1sgLiW2Gi0UEEV_YMDKfWATODHSeAH2wU43pD6qjwQ1lSAW1TFPLRCtRZJc17_o9yzBmOfImwzcyexQJ3zRyX2H0G-EY8o-FGCFkdgXelbM-RJVOlz7oPW8h2Ls5vZSgA5F_f7EAY5aceS2-sB5McqY0m9JlLBB5IidVytd0DeEV7-koN3_nLwf-jWTgihWMO_gh8SV5lNqY82M8bRSRnJ6iOmdwAbgfr0Rw5yGQOaPm1QHGiVGZ66ikpd4i3p3Z-2IfZ5WK75tSrxsvEu4EUSor-gefceGRPzX9DqmCDs8h-YiShIIvikj1k5yitzoxY7JI6l8kWKSBZRqBQIUIA"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": "http://127.0.0.1:8090/api/users/current-chanel"
+					},
+					"response": []
+				},
+				{
 					"name": "get one user",
 					"request": {
 						"method": "GET",
@@ -137,18 +201,24 @@
 				{
 					"name": "update user",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ4MjY2MzAsImV4cCI6MTcwNDgzMDIzMCwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.omFaWHlH3W_AEw0zbqpRte6925g7dKvQHQkSvuroGUJ5w2QDw39hkMG9932V3KXon4H3An0kK4RJJHtdfv1FpvYZnK2ULnA5bVffnqafmBvrDZ3puNdS5ArsYbkfFzAADQntwUkGoDMbVjssam8fHZtNKsX038VyQnAqTG9y2f8XGfW2YDpJg1_MVg1Lp7z72GCFjFjtwCadz1IYiS4Ta-kQz-gL7F4lcbujTTsXbj5Aib1QUOgQ9X1cfM07lKoTu0eTwoLKDf4xrrI6BA-4Es2gj2q8LjGdw-cRV3uwOhqgdLMjTAlKxY5G8xjv9GCZenKFm1O_VKxnEnaBFdBtIw"
+							}
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"gaoubak@gmail.com\",\n    \"username\": \"faust\",\n    \"firstName\": \"kader\",\n    \"lastName\": \"Bakayoko\"\n}",
+							"raw": "{\n    \"email\": \"gaoubak@gmail.com\",\n    \"username\": \"faust\",\n    \"firstName\": \"kader\",\n    \"lastName\": \"Bakayoko\",\n    \"userPhoto\": \"https://static.cnews.fr/sites/default/files/destiny_2_-_6_conseils_de_pro_pour_bien_debuter-taille1200_60e80cb48363a.jpg\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8090/api/ausers/1"
+						"url": "http://127.0.0.1:8090/api/users/update/1"
 					},
 					"response": []
 				},
@@ -172,7 +242,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ0OTMzMjYsImV4cCI6MTcwNDQ5NjkyNiwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.ABjif9TQ32u3jf3cz7ptuS4-yqBKUvh3HWT7h2PL99d0_X52MbFAXEaB81oBtmwnVpLvC3JvaIPhknwiGO6hrpyLQYna7I0kBiLPRxmrQKAGYtCYMrfsrRoW5WoL7502oPAEibJroJaVT8dD7iFqwD0l2mKDP3prChFAdILCzVTUGvYCnGbY5mRt7D0m1vP2Z1RM4om7yKhfUy8mIZjy-Bb4IVn3T99rSAmV00YU0voW3Upnzj2tVNk2_JS2eLXQj4hnlfB6HyfhC4BlsNzne0ZNrdL-3_GgJULKCVdgnqLZ0958vOCT_d0oYQMu4KP92tio32MSBt2QOcoKUleD8g"
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ4MzYyMjYsImV4cCI6MTcwNDgzOTgyNiwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.E-Vg2H87XiyxdKZYs66t1wm3OZHMkkapb532UD_S00PTDs0U8FAiLNjuwcj04XlmhtzcxPAAPyqAV09SexmNVeUy_-LsvVbvaD-apI_aQQ72dbk3fqxoGwYgVkMh73tVKGguwiLo521jzdBd37WeNH-i58_9o6v72CBDlUESSz8A_fo4ALID17vhbhXphk_Tt033UmFHXXVxi0T12XCKGrUZwTMRriBGiMP_cPH47goCm6dTJ7A7BE2qhVqb4Vba4P5lpX1PGa72BvIz64LdBWlKUgjbe3AzMmNp4SHla685ocjRfdHwIc_Ed_Kb-4PeyNd5R6UQItiJmPUsHtiXEA"
 							}
 						},
 						"method": "GET",
@@ -187,7 +257,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ3MTA3MTQsImV4cCI6MTcwNDcxNDMxNCwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.iawc7aUSEaE_9QZwFSCoszCtKbYADY4USVYieTCBU3XlA2AC73MvOsjERnOlnOC4KNhrFmt4QA1alrPdqqFwZ32rR7JHw1rxufgTT76NJzu5KD4KomUB603LuxZVTHohB_V7XHXry-1Byw0rTxPTfsoPrN3a0jkzXm5hpLcFuDhP54NEtZppF0MiwF_nMDA6Uo2_DsS18LwGOku4y9QxCTdz0XzGTDFyNJBgUGda98WfpUCdJCF9Tmn0EOsp1C2Q1lt3IeFkcFOuusG0xaTxiVNFOfOizdVGsnpX6Aj0UAF5my9xWEhZ6qRMTLRjBEIfWkaoXv_3xhksd3eRsRXvNA"
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ4MzYyMjYsImV4cCI6MTcwNDgzOTgyNiwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.E-Vg2H87XiyxdKZYs66t1wm3OZHMkkapb532UD_S00PTDs0U8FAiLNjuwcj04XlmhtzcxPAAPyqAV09SexmNVeUy_-LsvVbvaD-apI_aQQ72dbk3fqxoGwYgVkMh73tVKGguwiLo521jzdBd37WeNH-i58_9o6v72CBDlUESSz8A_fo4ALID17vhbhXphk_Tt033UmFHXXVxi0T12XCKGrUZwTMRriBGiMP_cPH47goCm6dTJ7A7BE2qhVqb4Vba4P5lpX1PGa72BvIz64LdBWlKUgjbe3AzMmNp4SHla685ocjRfdHwIc_Ed_Kb-4PeyNd5R6UQItiJmPUsHtiXEA"
 							}
 						},
 						"method": "GET",
@@ -202,14 +272,14 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ3MDcwNDQsImV4cCI6MTcwNDcxMDY0NCwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.TBIRoVHpoxyjnikuWlRbg47SZkFHyQC7uM6HeYo_QFwe5B6KD9ek9bxrcVC6sj151tjvtzzMOQx3PIyXb5mjKqHuFzCIsoyMPuqrSszrt4_3x24pC7mgccJGHfKFCsSjO19ql2-BPQZdRHpKYbpQhnRDCikqAO8wrGzb-1R9oSxxVzp3Sji1Dqz4CD75wicflk2pEooWt_AQ-XV4egNnBVke6LyFy9mCW8J_X5XJrKhtiaqNOp9oPPp8f8m1rN1eFcOq4fpKXwkRKXgf6Sss8NM7N0DJ1YSJJaOBSifQFDgnRdlohm70fZ3rLe6luLdF6PQikmYwgEJWq60HsiOqgg"
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDUwMTI5NjUsImV4cCI6MTcwNTAxNjU2NSwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.U1sgLiW2Gi0UEEV_YMDKfWATODHSeAH2wU43pD6qjwQ1lSAW1TFPLRCtRZJc17_o9yzBmOfImwzcyexQJ3zRyX2H0G-EY8o-FGCFkdgXelbM-RJVOlz7oPW8h2Ls5vZSgA5F_f7EAY5aceS2-sB5McqY0m9JlLBB5IidVytd0DeEV7-koN3_nLwf-jWTgihWMO_gh8SV5lNqY82M8bRSRnJ6iOmdwAbgfr0Rw5yGQOaPm1QHGiVGZ66ikpd4i3p3Z-2IfZ5WK75tSrxsvEu4EUSor-gefceGRPzX9DqmCDs8h-YiShIIvikj1k5yitzoxY7JI6l8kWKSBZRqBQIUIA"
 							}
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user\": 5,\n    \"follower\": 12\n}",
+							"raw": "{\n    \"user\": 5,\n    \"follower\": 13\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -240,7 +310,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ3MDkwNzYsImV4cCI6MTcwNDcxMjY3Niwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.DdRHdwvgJxXuUnMfvtKHtDDYMS56vuHyyaNlHKh5xn2FdXkQEq55mxiOKdqzxoS_vnyut2ZWfKpVZA2H6Jwo9YkOMhwL-Xg3FC9MCdLVoCu9i0m5FqDSREhsHsZyTN89aY7HBtklPDEgnaqSNULHbozT7oCIEZjTj6fHfUjjluR-zpIREJhTAHxWpfRLT4EzTY1mu6HsC5nZQAuKwsm7jniO9ibs5wUxQ9bECU4BW3OWR2jEyhdsWFO65kFjqgwbORXoCQU9dXTpSBGyERVCY5S6Q7dQYdACmINBp3gaBiEDJ9nXJwnvrCWWokW9tkVFja1GzqqSoNk2uzYVEGMUwA"
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDUwMTI5NjUsImV4cCI6MTcwNTAxNjU2NSwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.U1sgLiW2Gi0UEEV_YMDKfWATODHSeAH2wU43pD6qjwQ1lSAW1TFPLRCtRZJc17_o9yzBmOfImwzcyexQJ3zRyX2H0G-EY8o-FGCFkdgXelbM-RJVOlz7oPW8h2Ls5vZSgA5F_f7EAY5aceS2-sB5McqY0m9JlLBB5IidVytd0DeEV7-koN3_nLwf-jWTgihWMO_gh8SV5lNqY82M8bRSRnJ6iOmdwAbgfr0Rw5yGQOaPm1QHGiVGZ66ikpd4i3p3Z-2IfZ5WK75tSrxsvEu4EUSor-gefceGRPzX9DqmCDs8h-YiShIIvikj1k5yitzoxY7JI6l8kWKSBZRqBQIUIA"
 							}
 						},
 						"method": "GET",
@@ -250,26 +320,17 @@
 					"response": []
 				},
 				{
-					"name": "get curent user  chanels",
+					"name": "get one chanels",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ3MTA5MzksImV4cCI6MTcwNDcxNDUzOSwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.Ex-gI1Y_NRwft87QFUbBlQ7KRm5ljJZ1JSmrCgd2m5TplsMfAiTydYOLXb22cNcKALvQAL0p760lUnzPdi8usBanGS1UhUPQRVoXD4qaoYwuDc0AFRfz2FtTLu78jIufVW81gAhncIFX6nAUTr8DJC7gMHUNUK3QH5SwguWQ2Zwy1YHTz2WJ0Swme7MQTXH0O5949x-MrZaqb8zCA_21QVpg0xRrHIA1GWDZ8b7AIKgOWMsU_U7elTxOzSGs1QiM7rl09ZzxhVtVfV8QyGQjUoytYNwi7ZA8XU8qW0qPINl4IWBomuN6Ybp4Y8ONXMeOGXpEEJe7nGpRo-TAyjqtEA"
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDUwMTI5NjUsImV4cCI6MTcwNTAxNjU2NSwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.U1sgLiW2Gi0UEEV_YMDKfWATODHSeAH2wU43pD6qjwQ1lSAW1TFPLRCtRZJc17_o9yzBmOfImwzcyexQJ3zRyX2H0G-EY8o-FGCFkdgXelbM-RJVOlz7oPW8h2Ls5vZSgA5F_f7EAY5aceS2-sB5McqY0m9JlLBB5IidVytd0DeEV7-koN3_nLwf-jWTgihWMO_gh8SV5lNqY82M8bRSRnJ6iOmdwAbgfr0Rw5yGQOaPm1QHGiVGZ66ikpd4i3p3Z-2IfZ5WK75tSrxsvEu4EUSor-gefceGRPzX9DqmCDs8h-YiShIIvikj1k5yitzoxY7JI6l8kWKSBZRqBQIUIA"
 							}
 						},
 						"method": "GET",
 						"header": [],
-						"url": "http://127.0.0.1:8090/api/chanels/user"
-					},
-					"response": []
-				},
-				{
-					"name": "get one chanels",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://127.0.0.1:8090/api/chanels/1"
+						"url": "http://127.0.0.1:8090/api/chanels/4"
 					},
 					"response": []
 				},
@@ -279,21 +340,21 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ3MDkwNzYsImV4cCI6MTcwNDcxMjY3Niwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.DdRHdwvgJxXuUnMfvtKHtDDYMS56vuHyyaNlHKh5xn2FdXkQEq55mxiOKdqzxoS_vnyut2ZWfKpVZA2H6Jwo9YkOMhwL-Xg3FC9MCdLVoCu9i0m5FqDSREhsHsZyTN89aY7HBtklPDEgnaqSNULHbozT7oCIEZjTj6fHfUjjluR-zpIREJhTAHxWpfRLT4EzTY1mu6HsC5nZQAuKwsm7jniO9ibs5wUxQ9bECU4BW3OWR2jEyhdsWFO65kFjqgwbORXoCQU9dXTpSBGyERVCY5S6Q7dQYdACmINBp3gaBiEDJ9nXJwnvrCWWokW9tkVFja1GzqqSoNk2uzYVEGMUwA"
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDUwMTI5NjUsImV4cCI6MTcwNTAxNjU2NSwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.U1sgLiW2Gi0UEEV_YMDKfWATODHSeAH2wU43pD6qjwQ1lSAW1TFPLRCtRZJc17_o9yzBmOfImwzcyexQJ3zRyX2H0G-EY8o-FGCFkdgXelbM-RJVOlz7oPW8h2Ls5vZSgA5F_f7EAY5aceS2-sB5McqY0m9JlLBB5IidVytd0DeEV7-koN3_nLwf-jWTgihWMO_gh8SV5lNqY82M8bRSRnJ6iOmdwAbgfr0Rw5yGQOaPm1QHGiVGZ66ikpd4i3p3Z-2IfZ5WK75tSrxsvEu4EUSor-gefceGRPzX9DqmCDs8h-YiShIIvikj1k5yitzoxY7JI6l8kWKSBZRqBQIUIA"
 							}
 						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"users\": [\n         5, 10, 12\n    ]\n}\n",
+							"raw": "{\n    \"users\": [\n         13, 12\n    ]\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8090/api/chanels/addUser/1"
+						"url": "http://127.0.0.1:8090/api/chanels/addUser/4"
 					},
 					"response": []
 				},
@@ -326,7 +387,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://127.0.0.1:8090/api/chanels"
+						"url": "http://127.0.0.1:8090/api/chanels/delete/1"
 					},
 					"response": []
 				}
@@ -353,6 +414,12 @@
 				{
 					"name": "get all messages from a chanel",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDUwNzYxOTgsImV4cCI6MTcwNTA3OTc5OCwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.bh1cdUQ8nUwWtjjqulzIe_FwMn_TARW9S9hZaSKV30GE89vlPnhnq0k2dNWO3Se6ajjT9Zgg9AZhpA3C40ycsZkdqED0gR031029Vs_gChPe6lEoQxa6IaAxORBx_SRmdza8-D7WtsZbuosMMEyOXO_hAoAMXE7DPqvoGH1UWfNj8bnVg1nA306dxFYmTKDrv3f25Qcn0gWdO5Y4RAuvBlmeWEhfXszUZBWpHxShPokNFpRoaz6f6CEwOQdo-XfiSEmwayyXCLYnCzyPCJTenY-gf_Rc0gjcwfQjy1_bQpUFFshh0Vbz7qAsa96iTmQxmTURnRkqg2ZgGTSnhfcjkw"
+							}
+						},
 						"method": "GET",
 						"header": [],
 						"url": "http://127.0.0.1:8090/api/messages/chanel/1"
@@ -383,14 +450,14 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ0OTcwNTIsImV4cCI6MTcwNDUwMDY1Miwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.bWPmZlhM1hlK6huiYMB7mKzRelsgR-TrkIVMOtK3djESSq8sFIOiW0ozvB7jPz6NeN3rZ4FzyZT5o2udxzx-SYlBhGigNARPTRrvB7iKQWBHNDtP9smcqdeZuI4S8Zq5Zp9tLnkXkFlbc5me5BTo5oIIgjnD1w4wW3rWIaIPS-EGjpynpts-ZiBsWg0kRpk8KOMPiGjbq7yMGQwaLa8KrLc3ColCDJSyGJPUPyZOUSlT2f9dkBGaWBP14tkghAlO5VtFOzanWTbxJR2JNMpGyna9HZPZpYepRIhynPPZEinZcK_dPQtZnb5RlBpdrBpchwjTCtVIT1lmEGvQekfVFg"
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDUwMTc3NDUsImV4cCI6MTcwNTAyMTM0NSwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.d6MhD2MTfSExeqnTpRKIuhYqk1WsJ3bXDvnVD5vEmVqoCjvJImUVoSbyCYIO77AcvcPce-ZT4IBGFFeqcNxoQJm95saJOjbzyaiVsyISkgY_s4Y5k5PXnX_9n32fwew7p8bFn0hWKgPaY4pf5V61fAOBQL-er3NkfFuvsBqy3QP6cV_SOUwUN0N1gOr_bxPYNrIiutAubXdYvDSwsGAX0-Xf2Dndm8L3gfFaXY-4E6k49X0SlJ_3_BMrMBR11WQtYc19UrJrgKMiBy1TwUQlPFtCm7nwul7EsYesreACeW6F9Wf80ANJIfzpV7ZrgGCu4I2gI2WaQDvYos-oNzFwJQ"
 							}
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user\": 1,\n    \"userText\": \"sale pute\",\n    \"channel\": 1,\n    \"date\": \"2023-10-27 12:40:34\"\n}\n",
+							"raw": "{\n    \"user\": 5,\n    \"userText\": \"sale pute 4\",\n    \"channel\": 1,\n    \"date\": \"2023-10-27 12:40:34\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -407,6 +474,37 @@
 						"method": "DELETE",
 						"header": [],
 						"url": "http://127.0.0.1:8090/api/messages/delete/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Mercure",
+			"item": [
+				{
+					"name": "http://localhost:9090/.well-known/mercure?topic=chat_room_1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/.well-known/mercure?topic=chat_room_1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								".well-known",
+								"mercure"
+							],
+							"query": [
+								{
+									"key": "topic",
+									"value": "chat_room_1"
+								}
+							]
+						}
 					},
 					"response": []
 				}
