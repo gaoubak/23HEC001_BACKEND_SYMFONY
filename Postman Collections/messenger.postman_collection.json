@@ -136,7 +136,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ5MDcwMTIsImV4cCI6MTcwNDkxMDYxMiwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.cWlKy7C4Gcl8B8pn6aaV1NRCwbHJC9zG02cdWF1rKl07QXYhyzjJiX5MG7h3IixdI8osH-osWIJ8ETw2ahSacWKCO1yI3N2gFgr-QCJ11EppJnXvnClVcQJhM0nTV5MN7YlDCSy8OT5MslwHapZiDy8l0DWfQCv7LJLnvHZdiLbYvgzof3VlrC8UhJKckhBcggbQ4Ke5JniC8nnruq5FLN0JKM3dEYk_prIHBIqGUNuw6arQs4TwJ8HFlD38V1SgLfq1tZP1QdxRlA5TImp-w80fL7XYXUKt-sqDnTYXRHa8K0LpPBgWLEBa-IFk4DgvtJ92-YwT4XkL6IHLy1aatA"
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDUwMTI5NjUsImV4cCI6MTcwNTAxNjU2NSwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.U1sgLiW2Gi0UEEV_YMDKfWATODHSeAH2wU43pD6qjwQ1lSAW1TFPLRCtRZJc17_o9yzBmOfImwzcyexQJ3zRyX2H0G-EY8o-FGCFkdgXelbM-RJVOlz7oPW8h2Ls5vZSgA5F_f7EAY5aceS2-sB5McqY0m9JlLBB5IidVytd0DeEV7-koN3_nLwf-jWTgihWMO_gh8SV5lNqY82M8bRSRnJ6iOmdwAbgfr0Rw5yGQOaPm1QHGiVGZ66ikpd4i3p3Z-2IfZ5WK75tSrxsvEu4EUSor-gefceGRPzX9DqmCDs8h-YiShIIvikj1k5yitzoxY7JI6l8kWKSBZRqBQIUIA"
 							}
 						},
 						"method": "GET",
@@ -272,14 +272,14 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ3MDcwNDQsImV4cCI6MTcwNDcxMDY0NCwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.TBIRoVHpoxyjnikuWlRbg47SZkFHyQC7uM6HeYo_QFwe5B6KD9ek9bxrcVC6sj151tjvtzzMOQx3PIyXb5mjKqHuFzCIsoyMPuqrSszrt4_3x24pC7mgccJGHfKFCsSjO19ql2-BPQZdRHpKYbpQhnRDCikqAO8wrGzb-1R9oSxxVzp3Sji1Dqz4CD75wicflk2pEooWt_AQ-XV4egNnBVke6LyFy9mCW8J_X5XJrKhtiaqNOp9oPPp8f8m1rN1eFcOq4fpKXwkRKXgf6Sss8NM7N0DJ1YSJJaOBSifQFDgnRdlohm70fZ3rLe6luLdF6PQikmYwgEJWq60HsiOqgg"
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDUwMTI5NjUsImV4cCI6MTcwNTAxNjU2NSwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.U1sgLiW2Gi0UEEV_YMDKfWATODHSeAH2wU43pD6qjwQ1lSAW1TFPLRCtRZJc17_o9yzBmOfImwzcyexQJ3zRyX2H0G-EY8o-FGCFkdgXelbM-RJVOlz7oPW8h2Ls5vZSgA5F_f7EAY5aceS2-sB5McqY0m9JlLBB5IidVytd0DeEV7-koN3_nLwf-jWTgihWMO_gh8SV5lNqY82M8bRSRnJ6iOmdwAbgfr0Rw5yGQOaPm1QHGiVGZ66ikpd4i3p3Z-2IfZ5WK75tSrxsvEu4EUSor-gefceGRPzX9DqmCDs8h-YiShIIvikj1k5yitzoxY7JI6l8kWKSBZRqBQIUIA"
 							}
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user\": 5,\n    \"follower\": 12\n}",
+							"raw": "{\n    \"user\": 5,\n    \"follower\": 13\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -322,9 +322,15 @@
 				{
 					"name": "get one chanels",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDUwMTI5NjUsImV4cCI6MTcwNTAxNjU2NSwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.U1sgLiW2Gi0UEEV_YMDKfWATODHSeAH2wU43pD6qjwQ1lSAW1TFPLRCtRZJc17_o9yzBmOfImwzcyexQJ3zRyX2H0G-EY8o-FGCFkdgXelbM-RJVOlz7oPW8h2Ls5vZSgA5F_f7EAY5aceS2-sB5McqY0m9JlLBB5IidVytd0DeEV7-koN3_nLwf-jWTgihWMO_gh8SV5lNqY82M8bRSRnJ6iOmdwAbgfr0Rw5yGQOaPm1QHGiVGZ66ikpd4i3p3Z-2IfZ5WK75tSrxsvEu4EUSor-gefceGRPzX9DqmCDs8h-YiShIIvikj1k5yitzoxY7JI6l8kWKSBZRqBQIUIA"
+							}
+						},
 						"method": "GET",
 						"header": [],
-						"url": "http://127.0.0.1:8090/api/chanels/1"
+						"url": "http://127.0.0.1:8090/api/chanels/4"
 					},
 					"response": []
 				},
@@ -334,14 +340,15 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ4NDAzOTAsImV4cCI6MTcwNDg0Mzk5MCwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.XD-qPgjhiGcoc75LtRF0EwujQyRZH_DNZ-zRMsNrd3gcfgIhjtEpvm3G1Kplezj-fKRitjt-rzAuA0gRD041u5yO44ZEbpUkQHTYVg5NGbqDnmi-zFNIA0OIPNZwhZc2dXg2jnyR1JdN4kR0-MSvKyv9vhWjyCJnx5X6D1RGJaX4XoSt9BsPBS9AazMpPeINTom7UcixzCKxb6P5GBpw6JrXmcxYzsQvxXrcg0tM4rnGLNMIg6onwFDVatJui9UbyNj97dcES-Kg2lzK2Y3SpXVeyXArlNh0V8de6W-ji3NTEdIOAvrnxdMebq9mTrePHk7ga3pP8fqtJF5ZHyd8Rw"
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDUwMTI5NjUsImV4cCI6MTcwNTAxNjU2NSwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.U1sgLiW2Gi0UEEV_YMDKfWATODHSeAH2wU43pD6qjwQ1lSAW1TFPLRCtRZJc17_o9yzBmOfImwzcyexQJ3zRyX2H0G-EY8o-FGCFkdgXelbM-RJVOlz7oPW8h2Ls5vZSgA5F_f7EAY5aceS2-sB5McqY0m9JlLBB5IidVytd0DeEV7-koN3_nLwf-jWTgihWMO_gh8SV5lNqY82M8bRSRnJ6iOmdwAbgfr0Rw5yGQOaPm1QHGiVGZ66ikpd4i3p3Z-2IfZ5WK75tSrxsvEu4EUSor-gefceGRPzX9DqmCDs8h-YiShIIvikj1k5yitzoxY7JI6l8kWKSBZRqBQIUIA"
 							}
 						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"users\": [\n         10, 12\n    ]\n}\n",
+							"raw": "{\n    \"users\": [\n         13, 12\n    ]\n}\n",
+
 							"options": {
 								"raw": {
 									"language": "json"
@@ -408,6 +415,12 @@
 				{
 					"name": "get all messages from a chanel",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDUwNzYxOTgsImV4cCI6MTcwNTA3OTc5OCwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.bh1cdUQ8nUwWtjjqulzIe_FwMn_TARW9S9hZaSKV30GE89vlPnhnq0k2dNWO3Se6ajjT9Zgg9AZhpA3C40ycsZkdqED0gR031029Vs_gChPe6lEoQxa6IaAxORBx_SRmdza8-D7WtsZbuosMMEyOXO_hAoAMXE7DPqvoGH1UWfNj8bnVg1nA306dxFYmTKDrv3f25Qcn0gWdO5Y4RAuvBlmeWEhfXszUZBWpHxShPokNFpRoaz6f6CEwOQdo-XfiSEmwayyXCLYnCzyPCJTenY-gf_Rc0gjcwfQjy1_bQpUFFshh0Vbz7qAsa96iTmQxmTURnRkqg2ZgGTSnhfcjkw"
+							}
+						},
 						"method": "GET",
 						"header": [],
 						"url": "http://127.0.0.1:8090/api/messages/chanel/1"
@@ -438,14 +451,14 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDQ3Mzg4MDEsImV4cCI6MTcwNDc0MjQwMSwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.O4337TwHOBIuaPGTD43q63ZDMk3E2Dk0kxFUHlOZzLc0_RCFFywIFcVerZuCUeP9kyiB7M-q-xDYRBe2031irWw7VDybzMZqm3ZU46VAtiLDnvwXQ49rTTzGwLAcSfetu3y8iHYtW6tCrfFcFmHfQWXVVg1Ec0Y6NctD3Af-EnreFsNhYlTcDmK5cy5Pb1FmqLUc3uOQ5DxuA5S6ScgjmglmE7K6DZoM2MLiYPptzcttr6hZaKDQDZG3gdTWdvfEL5PkqanQjsgQZ1lIHpi6MUA0XhBAPLnIbMgpi8P71_gAa4Dt9xJ5GhkkL5-vMSXbPYoOl9vxuty4UmrK0u6ANA"
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDUwMTc3NDUsImV4cCI6MTcwNTAyMTM0NSwicm9sZXMiOltdLCJlbWFpbCI6ImthZGVyQGV4YW1wbGUuY29tIn0.d6MhD2MTfSExeqnTpRKIuhYqk1WsJ3bXDvnVD5vEmVqoCjvJImUVoSbyCYIO77AcvcPce-ZT4IBGFFeqcNxoQJm95saJOjbzyaiVsyISkgY_s4Y5k5PXnX_9n32fwew7p8bFn0hWKgPaY4pf5V61fAOBQL-er3NkfFuvsBqy3QP6cV_SOUwUN0N1gOr_bxPYNrIiutAubXdYvDSwsGAX0-Xf2Dndm8L3gfFaXY-4E6k49X0SlJ_3_BMrMBR11WQtYc19UrJrgKMiBy1TwUQlPFtCm7nwul7EsYesreACeW6F9Wf80ANJIfzpV7ZrgGCu4I2gI2WaQDvYos-oNzFwJQ"
 							}
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user\": 5,\n    \"userText\": \"sale pute 2\",\n    \"channel\": 1,\n    \"date\": \"2023-10-27 12:40:34\"\n}\n",
+							"raw": "{\n    \"user\": 5,\n    \"userText\": \"sale pute 4\",\n    \"channel\": 1,\n    \"date\": \"2023-10-27 12:40:34\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -462,6 +475,37 @@
 						"method": "DELETE",
 						"header": [],
 						"url": "http://127.0.0.1:8090/api/messages/delete/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Mercure",
+			"item": [
+				{
+					"name": "http://localhost:9090/.well-known/mercure?topic=chat_room_1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/.well-known/mercure?topic=chat_room_1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								".well-known",
+								"mercure"
+							],
+							"query": [
+								{
+									"key": "topic",
+									"value": "chat_room_1"
+								}
+							]
+						}
 					},
 					"response": []
 				}

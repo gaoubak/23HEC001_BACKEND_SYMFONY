@@ -46,13 +46,16 @@ services:
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   caddy:
+    build:
+      context: .
+      dockerfile: Dockerfile.caddy
     image: dunglas/mercure
     restart: unless-stopped
     container_name: mercure_docker
     environment:
       SERVER_NAME: ":80"
-      MERCURE_PUBLISHER_JWT_KEY: "!ChangeMe!"
-      MERCURE_SUBSCRIBER_JWT_KEY: "!ChangeMe!"
+      MERCURE_PUBLISHER_JWT_KEY: "8c1f0ba78cabd4ea856a4945f9ec94f7ddbaecca3315ab52d175c3a47415dcfb"
+      MERCURE_SUBSCRIBER_JWT_KEY: "8c1f0ba78cabd4ea856a4945f9ec94f7ddbaecca3315ab52d175c3a47415dcfb"
       MERCURE_EXTRA_DIRECTIVES: |  
         cors_origins http://localhost:3000 
         cors_origins http://localhost:8090 
@@ -63,6 +66,9 @@ services:
       - caddy_config:/config
     networks:
       - symfony
+    ports:
+        - "9090:80"
+        - "80"
 
 
   phpmyadmin: 

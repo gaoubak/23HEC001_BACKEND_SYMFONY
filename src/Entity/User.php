@@ -24,19 +24,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel"})
+     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel", "get_current_user"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel"})
+     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel", "get_current_user"})
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel"})
+     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel", "get_current_user"})
      */
     private $email;
 
@@ -47,13 +47,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel"})
+     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel", "get_current_user"})
      */
     private $userPhoto;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Groups({"get_user", "get_follower"})
+     * @Groups({"get_user", "get_follower", "get_current_user"})
      */
     private $description;
 
