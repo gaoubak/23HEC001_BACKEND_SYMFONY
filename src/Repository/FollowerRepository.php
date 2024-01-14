@@ -4,6 +4,7 @@ namespace App\Repository;
 
 
 use App\Entity\Follower;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -20,6 +21,17 @@ class FollowerRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Follower::class);
+    }
+
+    public function findFollowerByUserAndFollowerId(User $user, User $followerId): ?Follower
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.user = :user')
+            ->andWhere('f.follower = :followerId')
+            ->setParameter('user', $user)
+            ->setParameter('followerId', $followerId)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
 //    /**
