@@ -65,13 +65,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\OneToMany(targetEntity="Association", mappedBy="user")
-     * @Groups({"get_user", "get_follower", "get_association","get_current_user_chanel"})
+     * @Groups({"get_follower", "get_association","get_current_user_chanel"})
      */
     private $associations;
 
     /**
      * @ORM\OneToMany(targetEntity="Follower", mappedBy="user")
-     * @Groups({"get_user", "get_follower", "get_association", "get_current_user_follower"})
+     * @Groups({"get_follower", "get_association", "get_current_user_follower"})
      */
     private $followers;
     
