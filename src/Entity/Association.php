@@ -17,7 +17,7 @@ class Association
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"association", "get_current_user_chanel"})
+     * @Groups({"association"})
      */
     private $id;
 

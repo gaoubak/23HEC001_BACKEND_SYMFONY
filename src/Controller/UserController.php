@@ -64,10 +64,11 @@ class UserController extends AbstractFOSRestController
         $followersData = [];
         foreach ($followers as $follower) {
             $followersData[] = [
-                'Id' => $follower->getFollower()->getId(),
-                'Username' => $follower->getFollower()->getUsername(),
-                'Email' => $follower->getFollower()->getEmail(),
-                'Photo' => $follower->getFollower()->getUserPhoto()
+                'id' => $follower->getFollower()->getId(),
+                'username' => $follower->getFollower()->getUsername(),
+                'email' => $follower->getFollower()->getEmail(),
+                'userPhoto' => $follower->getFollower()->getUserPhoto(),
+                'description' => $follower->getFollower()->getDescription(),
             ];
         }
 
@@ -137,24 +138,15 @@ class UserController extends AbstractFOSRestController
 
     /**
      * @Rest\View(serializerGroups={"user"})
-     * @Route("/update/{id}", name="update_user", methods={"PUT"})
+     * @Route("/update", name="update_current_user", methods={"PUT"})
      */
-    public function updateUser(Request $request, User $user)
+    public function updateCurrentUser(Request $request)
     {
+        $user = $this->getUser();
         $form = $this->formFactory->create(UserType::class, $user);
-        $form->submit($request->request->all(), false); // Process the form data
-        
+        $this->handleForm($request, $form);
+
         if ($form->isValid()) {
-            $uploadedImage = $form->get('userPhoto')->getData();
-            if ($uploadedImage) {
-                // Process the uploaded image and save it
-                $imageUrls = $this->userManager->processAndSaveImages($uploadedImage);
-                $destination = 'your_destination_directory';
-                $uploadedImage->move($destination, $uploadedImage->getClientOriginalName());
-                dump($imageUrls);
-                die("Image saved successfully");
-                // $user->setUserPhoto($imageUrls);
-            }
 
             $this->userManager->save($user);
             $this->userManager->flush();
@@ -162,8 +154,8 @@ class UserController extends AbstractFOSRestController
             return $this->renderUpdatedResponse('User updated successfully');
         }
 
-        return $this->createApiResponse($form->getErrors(true), Response::HTTP_BAD_REQUEST);
-    }
+         return $this->createApiResponse($form->getErrors(true), Response::HTTP_BAD_REQUEST);
+    }           
 
 
     /**
