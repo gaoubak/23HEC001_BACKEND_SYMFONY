@@ -104,8 +104,17 @@ class FollowerController extends AbstractFOSRestController
      * @Rest\View(serializerGroups={"follower"})
      * @Route("/delete/{id}", name="follower_delete", methods={"DELETE"})
      */
-    public function deleteFollowerAction(Follower $follower)
+    public function deleteFollowerAction(User $id)
     {
+        $user = $this->getUser();
+
+        // Find the Follower entity by the provided ID and the authenticated user as the user
+        $follower = $this->followerManager->findFollowerByUserAndFollowerId($user, $id);
+
+        if (!$follower) {
+            return $this->createApiResponse(['error' => 'Follower not found.'], Response::HTTP_NOT_FOUND);
+        }
+
         $this->followerManager->removeFollower($follower);
 
         return $this->renderDeletedResponse('Follower deleted successfully');
