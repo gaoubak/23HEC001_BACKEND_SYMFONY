@@ -24,6 +24,11 @@ services:
     App\Service\Mercure\JwtMercureService:
         arguments:
             $secret: "%mercure_secret%"
+            
+    App\Security\CustomAuthenticationSuccessHandler:
+        arguments:
+            $jwtMercureService: '@App\Service\Mercure\JwtMercureService'
+            $jwtTokenManager: '@lexik_jwt_authentication.jwt_manager'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

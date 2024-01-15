@@ -29,7 +29,10 @@ class JwtMercureService
             ->issuedAt(new \DateTimeImmutable())
             ->canOnlyBeUsedAfter(new \DateTimeImmutable())
             ->expiresAt(new \DateTimeImmutable('+24 hour'))
-            ->withClaim('mercure', ['publish' => ['*']])
+            ->withClaim('mercure', [
+                'publish' => ['*'],
+                'subscribe' => ['*'],
+            ])
             ->getToken($configuration->signer(), $configuration->signingKey());
 
         return $token->toString();
