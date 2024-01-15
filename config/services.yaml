@@ -24,7 +24,11 @@ services:
     App\Service\Mercure\JwtMercureService:
         arguments:
             $secret: "%mercure_secret%"
-            
+     
+    App\Controller\MessageController:
+        arguments:
+            $mercureUrl: "%env(MERCURE_PUBLISH_URL)%"
+
     App\Security\CustomAuthenticationSuccessHandler:
         arguments:
             $jwtMercureService: '@App\Service\Mercure\JwtMercureService'

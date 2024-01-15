@@ -19,7 +19,6 @@ use App\Service\Mercure\MercureService;
 use App\Service\Mercure\JwtMercureService;
 use Symfony\Component\Mercure\Update;
 
-
 /**
  * @Route("/api/messages")
  */
@@ -32,14 +31,18 @@ class MessageController extends AbstractFOSRestController
     private $formFactory;
     private $messageRepository;
     private $serializer;
+    private $mercureService;
+    private $mercureUrl;
 
 
-    public function __construct(MessageManager $messageManager, FormFactoryInterface $formFactory, MessageRepository $messageRepository, SerializerInterface $serializer)
+    public function __construct(MessageManager $messageManager, FormFactoryInterface $formFactory, MessageRepository $messageRepository, SerializerInterface $serializer, MercureService $mercureService, $mercureUrl)
     {
         $this->messageManager = $messageManager;
         $this->formFactory = $formFactory;
         $this->messageRepository = $messageRepository;
         $this->serializer = $serializer;
+        $this->mercureService = $mercureService; 
+        $this->mercureUrl = $mercureUrl;
     }
 
     /**
@@ -86,7 +89,6 @@ class MessageController extends AbstractFOSRestController
     }
 
 
-
     /**
      * @Rest\View(serializerGroups={"message"})
      * @Route("/send", name="message_create", methods={"POST"})
@@ -96,37 +98,45 @@ class MessageController extends AbstractFOSRestController
         $message = new Message();
         $form = $this->formFactory->create(MessageType::class, $message);
         $this->handleForm($request, $form);
-    
+
         if ($form->isSubmitted() && $form->isValid()) {
+            // Save the message to the database
             $this->messageManager->save($message);
             $this->messageManager->flush();
-    
-            // Create JWT for Mercure authentication
+
+            // Generate the JWT for Mercure authentication
             $jwt = $jwtMercureService->createJwt();
-    
-            // Send a ping to notify about the new message
+
+            // Build the Mercure update
+            $updateData = [
+                'username' => $message->getUser()->getUsername(),
+                'user_id' => $message->getUser()->getId(),
+                'content' => $message->getUserText(),
+                'channel' => $message->getChannel(),
+                'message_value' => $message->getUserText(),
+                'message_date' => $message->getDate()->format('Y-m-d H:i:s'),
+            ];
+
             $update = new Update(
-                ['http://localhost:9090/.well-known/mercure?topic=chat_room_' . $message->getChannel()->getId()],                json_encode([
-                    'username' => $message->getUser()->getUsername(),
-                    'user_id' => $message->getUser()->getId(),
-                    'content' => $message->getUserText(),
-                    'channel' => $message->getChannel(),
-                    'message_value' => $message->getUserText(),
-                    'message_date' => $message->getDate()->format('Y-m-d H:i:s'),
-                ]),
+                [$this->mercureUrl . '/chat_room/' . $message->getChannel()->getId()],
+                json_encode($updateData),
                 true,
-                'Bearer ' . $jwt
+                $jwt
             );
-    
-            
+
+            // Publish the update using MercureService
+            $result = $mercureService->mercureMessage($updateData, $message->getChannel()->getId());
+
+            // Check if the Mercure update was successful
+            if ($result) {
                 return $this->renderCreatedResponse('Message created successfully');
-           
+            } else {
+                return $this->createApiResponse('Failed to send Mercure update', Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
         }
-    
+
         return $this->createApiResponse($form, Response::HTTP_BAD_REQUEST);
     }
-    
-
 
 
     /**

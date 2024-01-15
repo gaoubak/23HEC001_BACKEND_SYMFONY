@@ -56,10 +56,8 @@ services:
       SERVER_NAME: ":80"
       MERCURE_PUBLISHER_JWT_KEY: "8c1f0ba78cabd4ea856a4945f9ec94f7ddbaecca3315ab52d175c3a47415dcfb"
       MERCURE_SUBSCRIBER_JWT_KEY: "8c1f0ba78cabd4ea856a4945f9ec94f7ddbaecca3315ab52d175c3a47415dcfb"
-      MERCURE_EXTRA_DIRECTIVES: |  
-        cors_origins http://localhost:3000 
-        cors_origins http://localhost:8090 
-        anonymous
+      MERCURE_EXTRA_DIRECTIVES: 
+        cors_origins http://localhost:3000 http://localhost:8090 
     command: /usr/bin/caddy run -config /etc/caddy/Caddyfile.dev --adapter caddyfile --config /etc/caddy/Caddyfile
     volumes:
       - caddy_data:/data

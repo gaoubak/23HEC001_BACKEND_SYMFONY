@@ -31,7 +31,11 @@ class JwtMercureService
             ->expiresAt(new \DateTimeImmutable('+24 hour'))
             ->withClaim('mercure', [
                 'publish' => ['*'],
-                'subscribe' => ['*'],
+                'subscribe' => [
+                    '/chat_room/{id}',
+                    '/chanel/{id}',
+                    '/followers/{id}'
+                ],
             ])
             ->getToken($configuration->signer(), $configuration->signingKey());
 
