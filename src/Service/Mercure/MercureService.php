@@ -5,6 +5,7 @@ namespace App\Service\Mercure;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mercure\HubInterface;
 use Symfony\Component\Mercure\Update;
+use Symfony\Bundle\MercureBundle\Mercure;
 
 class MercureService{
 
@@ -14,10 +15,11 @@ class MercureService{
     {
         $this->hub = $hub;
     }
+    
 
     public function mercureMessage($data, $topic){
         // Ici, vous ajoutez le topic à l'URL
-        $topicUrl = 'chat_room_' . $topic;
+        $topicUrl = '/chat_room/' . $topic;
 
         // Créer un nouvel objet Update avec l'URL du topic
         $update = new Update($topicUrl, json_encode([

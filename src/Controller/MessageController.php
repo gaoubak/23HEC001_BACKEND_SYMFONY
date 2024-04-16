@@ -18,6 +18,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use App\Service\Mercure\MercureService;
 use App\Service\Mercure\JwtMercureService;
 use Symfony\Component\Mercure\Update;
+use Symfony\Component\Mercure\HubInterface;
 
 
 /**
@@ -32,14 +33,16 @@ class MessageController extends AbstractFOSRestController
     private $formFactory;
     private $messageRepository;
     private $serializer;
+    private $hub;
 
 
-    public function __construct(MessageManager $messageManager, FormFactoryInterface $formFactory, MessageRepository $messageRepository, SerializerInterface $serializer)
+    public function __construct(MessageManager $messageManager, FormFactoryInterface $formFactory, MessageRepository $messageRepository, SerializerInterface $serializer, HubInterface $hub)
     {
         $this->messageManager = $messageManager;
         $this->formFactory = $formFactory;
         $this->messageRepository = $messageRepository;
         $this->serializer = $serializer;
+        $this->hub = $hub;
     }
 
     /**
@@ -88,10 +91,9 @@ class MessageController extends AbstractFOSRestController
 
 
     /**
-     * @Rest\View(serializerGroups={"message"})
      * @Route("/send", name="message_create", methods={"POST"})
      */
-    public function createMessageAction(Request $request, MercureService $mercureService, JwtMercureService $jwtMercureService)
+    public function createMessageAction(Request $request, MercureService $mercureService, JwtMercureService $jwtMercureService, HubInterface $hub)
     {
         $message = new Message();
         $form = $this->formFactory->create(MessageType::class, $message);
@@ -102,11 +104,11 @@ class MessageController extends AbstractFOSRestController
             $this->messageManager->flush();
     
             // Create JWT for Mercure authentication
-            $jwt = $jwtMercureService->createJwt();
-    
+            $jwt = $request->headers->get('MercureJWT');
             // Send a ping to notify about the new message
             $update = new Update(
-                ['http://localhost:9090/.well-known/mercure?topic=chat_room_' . $message->getChannel()->getId()],                json_encode([
+                '/chat_room/4',               
+                 json_encode([
                     'username' => $message->getUser()->getUsername(),
                     'user_id' => $message->getUser()->getId(),
                     'content' => $message->getUserText(),
@@ -114,10 +116,11 @@ class MessageController extends AbstractFOSRestController
                     'message_value' => $message->getUserText(),
                     'message_date' => $message->getDate()->format('Y-m-d H:i:s'),
                 ]),
-                true,
-                'Bearer ' . $jwt
             );
-    
+
+                $data = $hub->publish($update);
+                dd($data);
+               
             
                 return $this->renderCreatedResponse('Message created successfully');
            

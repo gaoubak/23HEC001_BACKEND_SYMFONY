@@ -12,11 +12,13 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use JMS\Serializer\Annotation\MaxDepth;
-
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity()
  * @ORM\Table(name="users")
+ * @Vich\Uploadable
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -24,7 +26,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel", "get_current_user"})
+     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel", "get_current_user","get_current_user_chanel"})
      */
     private $id;
 
@@ -45,6 +47,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $password;
 
+    /**     *
+     * @Vich\UploadableField(mapping="users", fileNameProperty="userPhoto")
+     */
+    private ?File $imageFile;
+
+
     /**
      * @ORM\Column(type="text", nullable=true)
      * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel", "get_current_user"})
@@ -59,13 +67,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\ManyToMany(targetEntity="Chanel", mappedBy="users")
-     * @Groups({"get_user", "get_follower", "get_association"})
+     * @Groups({"get_user", "get_follower", "get_association", "get_current_user_chanel"})
+     * @MaxDepth(1)
      */
     private $chanels;
 
     /**
      * @ORM\OneToMany(targetEntity="Association", mappedBy="user")
      * @Groups({"get_follower", "get_association","get_current_user_chanel"})
+     * @MaxDepth(1)
      */
     private $associations;
 
@@ -273,6 +283,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+         
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
     }
 
 }
