@@ -83,19 +83,8 @@ class UserController extends AbstractFOSRestController
     public function getCurrentUserChanlAction()
     {
         $user = $this->getUser();
-        $chanels = $user->getChanels();
-
-        $chanelsData = [];
-        foreach ($chanels as $chanel) {
-            // Ensure $chanel is an instance of the Chanel entity
-                $chanelsData[] = [
-                    'id' => $chanel->getId(),
-                    'user' => $chanel->getUsers()
-                    //'followers' => $chanel->getFollowers(),
-                    //'chanel' => $chanel->getChanel()->getFollowers(),
-                ];
-        }
-        return $this->createApiResponse($chanelsData, Response::HTTP_OK);
+        $serializedUser = $this->serializer->normalize($user, null, ['groups' => ['get_current_user_chanel']]);
+        return $this->createApiResponse($serializedUser, Response::HTTP_OK);
     }
 
 

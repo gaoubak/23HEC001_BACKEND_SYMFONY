@@ -107,7 +107,7 @@ class MessageController extends AbstractFOSRestController
             $jwt = $request->headers->get('MercureJWT');
             // Send a ping to notify about the new message
             $update = new Update(
-                '/chat_room/4',               
+                '/chat_room/'.$message->getChannel()->getId(),               
                  json_encode([
                     'username' => $message->getUser()->getUsername(),
                     'user_id' => $message->getUser()->getId(),

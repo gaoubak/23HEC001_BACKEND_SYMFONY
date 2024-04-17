@@ -11,7 +11,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use JMS\Serializer\Annotation\MaxDepth;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -26,7 +25,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel", "get_current_user","get_current_user_chanel"})
+     * @Groups({"get_user", "get_follower", "get_association", "get_message", "get_chanel", "get_my_chanel", "get_current_user"})
      */
     private $id;
 
@@ -67,15 +66,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\ManyToMany(targetEntity="Chanel", mappedBy="users")
-     * @Groups({"get_user", "get_follower", "get_association", "get_current_user_chanel"})
-     * @MaxDepth(1)
+     * @Groups({"get_user", "get_follower", "get_association"})
      */
     private $chanels;
 
     /**
      * @ORM\OneToMany(targetEntity="Association", mappedBy="user")
      * @Groups({"get_follower", "get_association","get_current_user_chanel"})
-     * @MaxDepth(1)
      */
     private $associations;
 
